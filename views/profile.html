@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+    <main class="profile-container grid-container">
+        <nav class="grid-item-nav">
+            <div class="nav-user p-1em flex-container">
+                <img src="/public/img/avatar.svg" alt="Image user profile">
+                <span class="fw-600">Eladio Rocha</span>
+            </div>
+            <div class="nav-options p-1em flex-container">
+                <p class="mb-2em">Pedir un viaje</p>
+                <p class="mb-2em">Viajes</p>
+                <p class="mb-2em txt-selected">Mi cuenta</p>
+                <p class="close-session">
+                    <hr class="hr mb-1em">
+                    <p class="txt-gray">Cerrar sesión</p>
+                </p>
+            </div>
+        </nav>
+        <section class="grid-item-profile">
+            <div class="profile-title p-1em flex-container">
+                <h2>Información de usuario</h2>
+            </div>
+            <div class="profile-options p-1em profile-description-container grid-container">
+                <div class="grid-item-description">
+                    <h4 class="mb-1em">Información principal</h4>
+                    <p>En esta sección se muestran tus datos personales, también pueden ser cambiadas sobreescribiendo las cajas de texto.</p>
+                </div>
+                <div class="grid-item-input">
+                    <div class="input-div one">
+                        <div class="i flex-container">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h5>Expediente</h5>
+                            <input class="input" type="text">
+                        </div>
+                    </div>
+                    <div class="input-div two">
+                        <div class="i flex-container">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <h5>NIP</h5>
+                            <input class="input" type="password">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+    <script src="/public/js/input-effect.js"></script>
+</body>
+</html>

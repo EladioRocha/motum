@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapa</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <link rel="stylesheet" href="/public/css/dist/air-picker.min.css">
+    <link rel="stylesheet" href="/public/css/dist/searchbox.min.css">
+    <link rel="stylesheet" href="/public/css/dist/dropdown-input-autocomplete.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+    <main class="map-container grid-container">
+        <nav class="grid-item-nav">
+            <div class="nav-user p-1em flex-container">
+                <img src="/public/img/avatar.svg" alt="Image user profile" id="user-img">
+                <span class="fw-600" id="user-name">Eladio Rocha</span>
+            </div>
+            <div class="nav-options p-1em flex-container">
+                <p class="mb-2em txt-selected">Pedir un viaje</p>
+                <p class="mb-2em">Viajes</p>
+                <p class="mb-2em">Mi cuenta</p>
+                <p class="close-session">
+                    <hr class="hr mb-1em">
+                    <p class="txt-gray">Cerrar sesión</p>
+                </p>
+            </div>
+        </nav>
+        <section id="map"></section>
+    </main>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+    <script src="/public/js/dist/air-picker.min.js"></script>
+    <script src="/public/js/dist/air-picker.es.js"></script>
+    <script src="/public/js/dist/leaflet.customsearchbox.min.js"></script>
+    <script src="/public/js/dist/utilities.js"></script>
+    <script src="/public/js/utilities.js" defer></script>
+    <script src="/public/js/map.js"></script>
+</body>
+</html>

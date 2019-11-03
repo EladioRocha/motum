@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/dist/loader.css">
+</head>
+<body>
+    <img class="wave" src="public/img/wave.png" alt="Wave effect background">
+    <main class="container grid-container">
+        <div class="img flex-container">
+            <img src="/public/img/driver-car-woman.svg" alt="Driver-car">
+        </div>
+        <div class="login-container flex-container">
+            <div class="lds-hourglass">
+            </div>
+
+            <form class="form" action="/user/login" method="POST">
+                <img class="avatar" src="public/img/avatar.svg" alt="Avatar image svg">
+                <h2 class="txt-blue">Bienvenido</h2>
+                <div class="input-div one">
+                    <div class="i flex-container">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Expediente</h5>
+                        <input class="input" type="text" id="expedient">
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i flex-container">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>NIP</h5>
+                        <input class="input" type="password" id="password">
+                    </div>
+                </div>
+                <a href="#" class="a-effect">¿Olvidaste tu contraseña?</a>
+                <button class="btn txt-white" id="btn-login">Entrar</button>
+            </form>
+        </div>
+    </main>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+    <script src="/public/js/utilities.js"></script>
+    <script src="/public/js/input-effect.js"></script>
+    <script src="/public/js/login.js"></script>
+</body>
+</html>

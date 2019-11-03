@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+body {
+    background-color: #FCFCFC;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    color: #717285;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ============================== LANDING PAGE ============================== */
+
+.nav-text {
+    margin: 0 5em 0 5em;
+}
+
+.nav-container {
+    width: 100vw;
+    height: 3.5em;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.main-container {
+    margin: 2em 5em 2em 5em;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 25em;
+    grid-template-areas: 
+    'section-left section-right'
+    'section-benefits section-benefits'
+    ;
+}
+
+.grid-item-section-left {
+    grid-area: section-left;
+}
+
+.section-left-content > h2 {
+    font-size: 3em;
+}
+
+.section-left-content > p {
+    font-size: 1.5em;
+}
+
+.grid-item-section-right {
+    grid-area: section-right;
+}
+
+.section-right-content {
+    background-image: url('../img/driver-car-man.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px 0px rgba(171,171,171,1);
+}
+
+.grid-item-section-benefits {
+    grid-area: section-benefits;
+    grid-row-gap: 2.5em;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+    'title title title'
+    'benefit-1 benefit-2 benefit-3';
+}
+
+.grid-item-title {
+    grid-area: title;
+    font-size: 1.5em;
+}
+
+.grid-item-benefit-1 {
+    grid-area: benefit-1;
+}
+
+.grid-item-benefit-2 {
+    grid-area: benefit-2;
+}
+
+.grid-item-benefit-3 {
+    grid-area: benefit-3;
+}
+
+.benefit-img {
+    background-image: url('https://dummyimage.com/125x125/000/fff');
+    background-size: cover;
+    width: 125px;
+    height: 125px;
+}
+
+.footer-container {
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1.5em;
+}
+
+/* ============================== END LANDING PAGE ============================== */
+
+
+/* ============================== LOGIN ============================== */
+
+.wave {
+    position: fixed;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+}
+
+.img {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.img img {
+    width: 500px;
+}
+
+.login-container {
+    align-items: center;
+    text-align: center;
+}
+
+.form {
+    width: 360px;
+}
+
+.form h2 {
+    font-size: 2.9rem;
+    margin: 15px 0;
+}
+
+.input-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.input-div:after, .input-div:before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #2FD69A;
+}
+
+.input-div:after {
+    right: 50%;
+}
+
+.input-div:before {
+    left: 50%;
+}
+
+.foucs .i i {
+    color: #2FD69A;
+}
+
+.input-div.focus div h5 {
+    top: -12px;
+    font-size: 15px;
+}
+
+.input-div.focus:after, .input-div.focus:before {
+    width: 50%;
+}
+
+.input-div.one {
+    margin-top: 0;
+}
+
+.input-div.two {
+    margin-bottom: 4px;
+}
+
+.i {
+    justify-content: center;
+    align-items: center;
+}
+
+.i i {
+    color: #d9d9d9;
+}
+
+.input-div > div {
+    position: relative;
+    /* height: 45px; */
+}
+
+.input-div > div h5 {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.a-effect {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.9rem;
+    transition: .3s;
+}
+
+.a-effect:hover {
+    color: #2FD69A;
+}
+
+.form > .btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    background-image: linear-gradient(to right, #2FD69A, #38D39F, #2FD69A);
+    background-size: 200%;
+    transition: .5s;
+}
+
+.form > .btn:hover {
+    background-position: right;
+}
+
+.avatar {
+    width: 100px;
+}
+
+@media screen and (max-width: 1050px) {
+    .container {
+        grid-gap: 5rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .form {
+        width: 290px;
+    }
+
+    .form h2 {
+        font-size: 2.4rem;
+        margin: 8px 0;
+    }
+
+    .img img {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .img {
+        display: none;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .wave {
+        display: none;
+    }
+
+    .login-container {
+        justify-content: center;
+    }
+}
+
+/* ============================== END LOGIN ============================== */
+
+
+/* ============================== MAP ============================== */
+
+.map-container, .profile-container{
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 5fr);
+}
+
+.grid-item-nav {
+    overflow-wrap: unset;
+}
+
+.nav-user {
+    font-size: .875rem;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+}
+
+.nav-user > img {
+    margin-right: 1rem;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.nav-options {
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 5rem);
+}
+
+.nav-options > p:hover {
+    cursor: pointer;
+}
+
+.close-session {
+    margin-top: auto;
+}
+/* ============================== END MAP ============================== */
+
+
+/* ============================== PROFILE ============================== */
+
+.profile-title {
+    align-items: center;
+    height: 80px;
+}
+
+.profile-description-container {
+    width: 100vw;
+    height: calc(100% - 80px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    grid-gap: 100px;
+}
+
+.grid-item-input {
+    width: 250px;
+}
+
+/* ============================== END PROFILE ============================== */
+
+/* ============================================================== UTILITIES ============================================================== */
+
+.hr {
+    border: 1px solid #E1E1E1; 
+}
+
+.grid-container {
+    display: grid;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.b-1em {
+    position: relative;
+    bottom: 1em;
+}
+
+.mb-1em {
+    margin-bottom: 1em;
+}
+
+.mb-2em {
+    margin-bottom: 2em;
+}
+
+.mt-1em {
+    margin-top: 1em;
+}
+
+.p-1em {
+    padding: 1em;
+}
+
+.btn {
+    border: none;
+    border-radius: 20px;
+    width: 10em;
+    height: 2.5em;
+    outline: none;
+}
+
+.btn-big {
+    width: 15em;
+    height: 3.5em;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.bg-green {
+    background-color: #2FD69A;
+}
+
+.bg-blue {
+    background-color: #182A7D
+}
+
+.bg-gray {
+    background-color: #F1F1F1;
+}
+
+.txt-white {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.txt-gray {
+    color: #8E8E8E;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.fw-600 {
+    font-weight: initial;
+}
+
+.txt-blue {
+    color: #182A7D
+}
+
+.txt-selected {
+    color: #1c1c1c;
+    border-bottom: 2px solid rgba(47, 214, 154, 0.3);
+}
+
+.txt-1-dot-5em {
+    font-size: 1.5em;
+}
+
+.txt-1-dot-2em {
+    font-size: 1.2em;
+}
