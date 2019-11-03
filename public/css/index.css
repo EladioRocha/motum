@@ -468,3 +468,15 @@ a {
 .txt-1-dot-2em {
     font-size: 1.2em;
 }
+
+/* GOOGLE MAPS API CONTAINER */
+.pac-container {
+    width: 360px !important;
+    border-radius: 10px !important;
+    left: 18vw !important;
+}
+
+div.pac-logo:after {
+    display: none;
+}
+/* END GOOGLE MAPS API CONTAINER */
