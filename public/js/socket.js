@@ -1,9 +1,14 @@
-let socket = io.connect('http://localhost:3000');
+let socket = io.connect('http://148.220.208.55:3000/');
+// let socket = io.connect('http://192.168.1.73:3000')
 socket.on('connect', () => {
     socket
         .emit('authenticate', {token: localStorage.getItem('token')})
         .on('authenticated', async () => {
-            let {lat, long} = await getPosition()
+            console.log('worked', socket.io)
+            // let {lat, long} = await getPosition()
+            let lat = 21.36161363911997 + Math.random()
+            let long = -100.145994012827
+            console.log(lat, long)
             socket
                 .emit('userCoords', {lat, long})
                 .on('userCoords', (data) => {

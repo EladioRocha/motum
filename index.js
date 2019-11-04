@@ -14,8 +14,10 @@ io.sockets.on('connection', socketioJwt.authorize({
     secret: process.env.JWT_KEY_DEV,
     timeout: 15000 // 15 seconds to send the authentication message
 })).on('authenticated', function(socket) {
+    console.log('working')
     socket
         .on('userCoords', (data) => {
+            console.log('jeje')
             if(!markers[socket.decoded_token._id]) {
                 data.markerId = socket.decoded_token._id
                 markers[socket.decoded_token._id] = {socketId: socket.id, latitude: data.lat, longitude: data.long, sessionActive: 1, isMe: true}

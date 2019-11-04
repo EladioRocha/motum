@@ -11,9 +11,9 @@ async function sendHttpRequest(body, url = '/user/auth', method = 'POST', header
 function getPosition() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                let lat = position.coords.latitude + Math.random()
-                let long = position.coords.longitude + Math.random()
+            navigator.geolocation.watchPosition(position => {
+                let lat = position.coords.latitude
+                let long = position.coords.longitude
                 resolve({lat, long})
             })
         } else {
@@ -25,7 +25,7 @@ function getPosition() {
 function setMarker(lat = 0, long = 0, markerId = JSON.parse(localStorage.getItem('user'))._id, isMe) {
     if(!markers[markerId]) {
         markers[markerId] = L.marker([lat, long], {icon: L.icon({
-            iconUrl: '/public/img/driver.svg',
+            iconUrl: '/public/img/troyano.png',
             iconSize: [24, 24],
             iconAnchor:   
             [24, 24], // point of the icon which will correspond to marker's location

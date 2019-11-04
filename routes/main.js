@@ -5,5 +5,6 @@ let router = require('express').Router(),
 
 router.get('/', controllers.index)
 router.get('/login', controllers.login)
+router.get('/profile', controllers.profile)
 
 module.exports = router

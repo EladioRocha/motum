@@ -8,5 +8,9 @@ module.exports = {
 
     login: (req, res) => {
         res.sendFile('login.html', {root: viewsPath})
+    },
+
+    profile: (req, res) => {
+        res.sendFile('profile.html', {root: viewsPath})
     }
 }
