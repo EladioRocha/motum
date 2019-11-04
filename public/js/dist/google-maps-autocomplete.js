@@ -30,21 +30,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-
-    console.log(map)
-
-	
-
-
-    // google.maps.event.addListener(autocompleteDestiny, 'place_changed', function () {
-    //     let near_place = autocompleteDestiny.getPlace();
-    //     destiny = [near_place.geometry.location.lat(),near_place.geometry.location.lng()]
-    //     map.setView([near_place.geometry.location.lat(),near_place.geometry.location.lng()], 13)
-
- 
-    // });
-
-
-
 });

@@ -8,6 +8,42 @@ async function sendHttpRequest(body, url = '/user/auth', method = 'POST', header
     return await response.json()
 }
 
-function getDataFromLocalStorage(key) {
-    return localStorage.getItem(key)
+function getPosition() {
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                let lat = position.coords.latitude + Math.random()
+                let long = position.coords.longitude + Math.random()
+                resolve({lat, long})
+            })
+        } else {
+            reject('Geolocalización no es soportado por tu navegador')
+        }
+    })
+}
+
+function setMarker(lat = 0, long = 0, markerId = JSON.parse(localStorage.getItem('user'))._id, isMe) {
+    if(!markers[markerId]) {
+        markers[markerId] = L.marker([lat, long], {icon: L.icon({
+            iconUrl: '/public/img/driver.svg',
+            iconSize: [24, 24],
+            iconAnchor:   
+            [24, 24], // point of the icon which will correspond to marker's location
+        })}).addTo(map)
+    }
+
+    if(isMe) {
+        map.setView([lat, long], 16)
+    }
+}
+
+function removeMarker(id) {
+    map.removeLayer(markers[id])
+    delete markers[id]
+}
+
+async function showAllDrivers(data) {
+    for(let key of Object.keys(data)) {
+        setMarker(data[key].latitude, data[key].longitude, key, data[key].isMe)
+    }
 }

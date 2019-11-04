@@ -56,7 +56,7 @@ module.exports = {
             expedient: user.expedient,
             password: user.password,
             email: user.email
-        }, process.env.KEY_DEV, {
+        }, process.env.JWT_KEY_DEV, {
             expiresIn: '1d'
         })
         res.cookie('token', res.locals.token)
@@ -66,7 +66,7 @@ module.exports = {
 
     isValidToken: (req, res, next) => {
         try {
-            jwt.verify(req.cookies.token, process.env.KEY_DEV)
+            jwt.verify(req.cookies.token, process.env.JWT_KEY_DEV)
         } catch(err) {
             return res.location('/login').sendStatus(302)
         }
@@ -76,7 +76,7 @@ module.exports = {
 
     isActiveSession: (req, res, next) => {
         try {
-            jwt.verify(req.cookies.token, process.env.KEY_DEV)
+            jwt.verify(req.cookies.token, process.env.JWT_KEY_DEV)
         } catch(err) {
             return res.status(200)
         }
