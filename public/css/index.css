@@ -36,7 +36,7 @@ a {
     grid-gap: 30px;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 25em;
-    grid-template-areas: 
+    grid-template-areas:
     'section-left section-right'
     'section-benefits section-benefits'
     ;
@@ -72,7 +72,7 @@ a {
     grid-area: section-benefits;
     grid-row-gap: 2.5em;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
     'title title title'
     'benefit-1 benefit-2 benefit-3';
 }
@@ -160,7 +160,7 @@ a {
     border-bottom: 1px solid #d9d9d9;
 }
 
-.input-div:after, .input-div:before {
+.input-div:after, .input-div:before{
     content: '';
     position: absolute;
     bottom: -2px;
@@ -359,26 +359,30 @@ a {
 }
 
 .profile-description-container {
-    width: 100vw;
-    height: calc(100% - 80px);
+    width: 150vw;
+    /* height: calc(100% - 100px); */
     grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    grid-gap: 100px;
+    grid-gap: 150px;
 }
 
 .grid-item-input {
-    width: 250px;
+    width: 300px;
 }
+
 
 /* ============================== END PROFILE ============================== */
 
 /* ============================================================== UTILITIES ============================================================== */
 
 .hr {
-    border: 1px solid #E1E1E1; 
+    border: 1px solid #E1E1E1;
 }
 
 .grid-container {
     display: grid;
+    padding: 0px 0;
+
+
 }
 
 .flex-container {
@@ -480,3 +484,12 @@ div.pac-logo:after {
     display: none;
 }
 /* END GOOGLE MAPS API CONTAINER */
+
+
+
+/*  */
+
+.p-1em.2 {
+    padding: 5em;
+    margin-right: 50em;
+}
