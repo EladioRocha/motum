@@ -11,6 +11,6 @@ module.exports = {
     },
 
     history: (req, res) => {
-        res.sendFile('Historial.html', {root: viewsPath})
+        res.sendFile('history.html', {root: viewsPath})
     }
 }
