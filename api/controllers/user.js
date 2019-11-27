@@ -11,33 +11,21 @@ module.exports = {
         return res.sendFile('map.html', {root: viewsPath})
     },
 
+    profile: (req, res) => {
+        console.log(req.cookies)
+        if(req.query.token) {
+            let data = jwt.verify(req.cookies.token, process.env.JWT_KEY_DEV)
+            console.log(data)
+            if(data) {
+                return res.status(200).json({expedient: data.expedient, nip: '********', name: data.name, email: data.email})
+            }
+            return res.status(200).json()
+        }
+        return res.sendFile('profile.html', {root: viewsPath})
+    },
+
     closeSession: (req, res) => {
         res.clearCookie('token')
-        res.location('/login').sendStatus(302)
+        res.status(200).json({message: 'Se ha cerrado la sesión exitosamente'})
     }
 }
-
-// var token = req.headers['authorization']
-
-// if(!token){
-//   return res.status(401).send({
-//     error: "Es necesario el token de autenticación"
-//   })
-// }
-
-// token = token.replace('Bearer ', '')
-
-// console.log(token)
-
-// jwt.verify(token, 'Secret Password', function(err, user) {
-//   console.log(user)
-//   if (err) {
-//     res.status(401).send({
-//       error: 'Token inválido'
-//     })
-//   } else {
-//     res.send({
-//       message: 'Awwwww yeah!!!!'
-//     })
-//   }
-// })

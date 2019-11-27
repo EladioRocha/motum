@@ -1,8 +1,7 @@
 let path = require('path'),
     jwt = require('jsonwebtoken'),
-    bcrypt = require('bcrypt')
-    userModelPath = path.join(__dirname, '..', 'models', 'user'),
-    User = require(userModelPath),
+    bcrypt = require('bcrypt'),
+    User = require(path.join(__dirname, '..', 'models', 'user')),
     uaqAuthenticationPath = path.join(__dirname, '..', '..', 'helpers', 'uaq-authentication'),
     uaqAuthentication = require(uaqAuthenticationPath);
 
@@ -37,31 +36,30 @@ module.exports = {
                     semester: parseInt(result[1][7])
                 })
 
-                user = inserted.ops[0]
+                user = inserted.ops[0] 
             } else {
                 if(!bcrypt.compareSync(password, user.password)) {
                     return res.status(401).json({message: 'Usuario o contraseña incorrectos'})  
                 }
             }
 
+            res.locals.user = user
+            res.locals.token = jwt.sign({
+                _id: user._id,
+                expedient: user.expedient,
+                password: user.password,
+                name: user.name,
+                email: user.email
+            }, process.env.JWT_KEY_DEV, {
+                expiresIn: '1d'
+            })
+            res.cookie('token', res.locals.token)       
 
+            return next()
         } catch (error) {
             console.log(error)
             return res.status(500).json({message: 'Hubo un error en el servidor, intentelo más tarde'})
         }
-        
-        res.locals.user = user
-        res.locals.token = jwt.sign({
-            _id: user._id,
-            expedient: user.expedient,
-            password: user.password,
-            email: user.email
-        }, process.env.JWT_KEY_DEV, {
-            expiresIn: '1d'
-        })
-        res.cookie('token', res.locals.token)
-
-        next()
     },
 
     isValidToken: (req, res, next) => {
@@ -71,7 +69,7 @@ module.exports = {
             return res.location('/login').sendStatus(302)
         }
 
-        next()
+        return next()
     },
 
     isActiveSession: (req, res, next) => {
@@ -81,6 +79,6 @@ module.exports = {
             return res.status(200)
         }
 
-        next()
+        return next()
     }
 }

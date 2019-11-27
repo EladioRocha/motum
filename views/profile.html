@@ -16,12 +16,12 @@
                 <span class="fw-600">Eladio Rocha</span>
             </div>
             <div class="nav-options p-1em flex-container">
-                <p class="mb-2em">Pedir un viaje</p>
-                <p class="mb-2em">Viajes</p>
-                <p class="mb-2em txt-selected">Mi cuenta</p>
+                <a class="mb-2em txt-gray" href="/user/map">Pedir un viaje</a>
+                <a class="mb-2em txt-gray" href="/user/rides">Viajes</a>
+                <a class="mb-2em txt-selected" href="/user/profile">Mi cuenta</a>
                 <p class="close-session">
                     <hr class="hr mb-1em">
-                    <p class="txt-gray">Cerrar sesión</p>
+                    <p class="txt-gray" id="close-session">Cerrar sesión</p>
                 </p>
             </div>
         </nav>
@@ -41,16 +41,18 @@
                         </div>
                         <div>
                             <h5>Expediente</h5>
-                            <input class="input" type="text">
+                            <input class="input" type="text" id="profile-expedient">
                         </div>
+
                     </div>
+
                     <div class="input-div two">
                         <div class="i flex-container">
                             <i class="fas fa-lock"></i>
                         </div>
                         <div>
                             <h5>NIP</h5>
-                            <input class="input" type="password">
+                            <input class="input" type="password" id="profile-nip">
                         </div>
                     </div>
                     <!--  --><br>
@@ -60,7 +62,7 @@
                         </div>
                         <div>
                             <h5>Nombre</h5>
-                            <input class="input" type="text">
+                            <input class="input" type="text" id="profile-name">
                         </div>
                     </div>
                     <!--  -->
@@ -70,13 +72,12 @@
                         </div>
                         <div>
                             <h5>Correo</h5>
-                            <input class="input" type="email">
+                            <input class="input" type="email" id="profile-email">
                         </div>
                     </div>
 
-                    <div class="">
+                    <div>
                         <div>
-
                             <button class="btn bg-green txt-white">Guardar</button>
                         </div>
                     </div>
@@ -103,6 +104,7 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
-    <script src="/public/js/input-effect.js"></script>
+    <script src="/public/js/utilities.js"></script>
+    <script src="/public/js/index.js"></script>
 </body>
 </html>

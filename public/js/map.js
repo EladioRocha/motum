@@ -28,7 +28,6 @@ let map, routeControl, markers = {};
         if (!searchkeywords) {
             searchkeywords = "The search call back is clicked !!"
         }
-        alert(searchkeywords);
     }
 
     //With this work the input

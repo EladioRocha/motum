@@ -1,4 +1,4 @@
-async function sendHttpRequest(body, url = '/user/auth', method = 'POST', headers = {'Content-Type': 'application/json'}) {
+async function sendHttpRequest(body = JSON.stringify({}), url = '/user/auth', method = 'POST', headers = {'Content-Type': 'application/json'}) {
     let response = await fetch(url, {
         method,
         body,
@@ -46,4 +46,27 @@ async function showAllDrivers(data) {
     for(let key of Object.keys(data)) {
         setMarker(data[key].latitude, data[key].longitude, key, data[key].isMe)
     }
+}
+
+async function closeSession() {
+    let data = await sendHttpRequest(JSON.stringify({}), '/user/exit', 'POST')
+    if(data.message === 'Se ha cerrado la sesión exitosamente') {
+        location.href = '/login'
+    }
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    
+    return "";
 }

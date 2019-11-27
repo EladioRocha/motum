@@ -10,7 +10,7 @@ module.exports = {
         res.sendFile('login.html', {root: viewsPath})
     },
 
-    profile: (req, res) => {
-        res.sendFile('profile.html', {root: viewsPath})
+    history: (req, res) => {
+        res.sendFile('Historial.html', {root: viewsPath})
     }
 }

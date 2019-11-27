@@ -1,5 +1,6 @@
-let socket = io.connect('http://148.220.208.55:3000/');
+// let socket = io.connect('http://148.220.208.55:3000/');
 // let socket = io.connect('http://192.168.1.73:3000')
+let socket = io.connect('http://localhost:3000/')
 socket.on('connect', () => {
     socket
         .emit('authenticate', {token: localStorage.getItem('token')})
@@ -24,7 +25,7 @@ socket.on('connect', () => {
                 })
                 
         })
-        .on('unauthorized', (msg) => {
-            alert(`unauthorized: ${JSON.stringify(msg.data.message)}`);
+        .on('unauthorized', () => {
+            location.href = '/'
         })
 });
