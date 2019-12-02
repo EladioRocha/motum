@@ -135,6 +135,78 @@ a {
     padding: 1.5em;
 }
 
+@media (max-width: 576px) {
+    button {
+        width: 100% !important;
+    }
+
+    .nav-container > button {
+        display: none ;
+    }
+
+    .nav-container{
+        justify-content: center;
+    }
+
+    .main-container {
+        margin: 1.5em 3em 1.5em 3em;
+        grid-gap: 30px;
+        grid-template-columns: 100%;
+        grid-template-rows: 17em;
+        grid-template-areas:
+        'section-left'
+        'section-right'
+        'section-benefits';
+    }
+
+    .section-left-content > h2 {
+        font-size: 1.5em;
+    }
+
+    .section-right-content {
+        height: 250px;
+    }
+
+    .grid-item-section-benefits {
+        grid-area: section-benefits;
+        grid-row-gap: 2.5em;
+        grid-template-columns: 100%;
+        grid-template-areas:
+        'title'
+        'benefit-1'
+        'benefit-2'
+        'benefit-3';
+    }
+
+    .grid-item-title > h2 {
+        font-size: 0.9em;
+    }
+    
+    .benefit-img {
+        margin: 0 auto;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+
+    footer > div > span {
+        font-size: 0.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    
+}
+
+@media (max-width: 992px) {
+    
+}
+
+@media (max-width: 1200px) {
+    
+}
+
 /* ============================== END LANDING PAGE ============================== */
 
 
