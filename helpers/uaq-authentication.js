@@ -1,7 +1,17 @@
 let querySelector = require('cheerio'),
-    puppeteer = require('puppeteer');
+    puppeteer = require('puppeteer'),
+    path = require('path'),
+    fs = require('fs');
 
 let result = []
+
+async function downloadImage(uri, filename) {
+    try {
+        fs.writeFileSync(path.join(__dirname, '..', 'assets', 'img', 'student', filename), await uri.buffer())
+    } catch (error) {
+        console.log('Ocurrio un error al descargar la imágen', error)
+    }
+}
 
 async function main(expedient, password) {
     let {browser, page} = await openBrowser()
@@ -17,8 +27,8 @@ async function main(expedient, password) {
     await page.click('#modulo0')
     await getDataFrame(page)
     result.push(await getPicture(await page.content()))
+    await downloadImage(await page.goto(result[2]), `${result[0][0]}.png`)
     await closeBrowser(browser)
-    console.log(result)
     return result
 }
 
@@ -28,12 +38,14 @@ async function getPicture(html) {
 }
 
 async function getDataFrame(page) {
-    await page.waitForSelector('iframe')
-    let frame = await page.frames().find(frame => frame.name() === 'contenido')
-    await tryIfCrash(frame, '#tabs', true) // A veces falla aquí revisar bien por que
-    await searchCurrentCareer(frame, '#tabs > ul')
-    // await frame.waitForSelector('#generalesSection > div.gWrapper')
-    // result.push(await getUserInformation(await getNodeInformation(await frame.content(), '#generalesSection > div.gWrapper', 'label', 'val')))
+    try {
+        await page.waitForSelector('iframe')
+        let frame = await page.frames().find(frame => frame.name() === 'contenido')
+        await tryIfCrash(frame, '#tabs', true)
+        await searchCurrentCareer(frame, '#tabs > ul')
+    } catch (error) {
+        console.log('Ocurrio un error al obtener el frame', error)
+    }
 }
 
 async function tryIfCrash (action, selector, isAsync = true) {
