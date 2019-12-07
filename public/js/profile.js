@@ -1,47 +1,50 @@
-document.addEventListener('click', (e) => {
-    if(e.target.id === 'close-session') {
-        closeSession()
-    }
-})
-
 class InputHandle {
-    constructor(expedient = '', nip = '', name = '', email = '') {
+    constructor(expedient = '', nip = '', name = '', email = '', driver = false) {
         this._expedient = expedient
         this._nip = nip
         this._name = name
         this._email = email
+        this._driver = driver
     }
 
     get getExpedient() {
-        this._expedient = expedient
-    }
-
-    get getNip() {
-        this._nip = nip
-    }
-
-    get getName() {
-        this._name = name
-    }
-
-    get getEmail() {
-        this._email = email
-    }
-
-    set setExpedient(expedient) {
         return this._expedient
     }
 
-    set setNip(nip) {
+    get getNip() {
         return this._nip
     }
 
-    set setName(name) {
+    get getName() {
         return this._name
     }
 
-    set setEmail(email) {
+    get getEmail() {
         return this._email
+    }
+
+    get getDriver() {
+        return this._driver
+    }
+
+    set setExpedient(expedient) {
+        this._expedient = expedient
+    }
+
+    set setNip(nip) {
+        this._nip = nip
+    }
+
+    set setName(name) {
+        this._name = name
+    }
+
+    set setEmail(email) {
+        this._email = email
+    }
+
+    set setDriver(driver) {
+        this._driver = driver
     }
 }
 
@@ -74,19 +77,24 @@ class HandleScreen extends InputHandle {
         }
     }
 
-    disableInput() {
-
+    async updateStatusDriver(e) {
+        let isDriver = (e.target.checked) ? true : false
+        await sendHttpRequest(JSON.stringify({isDriver}), '/user/updateStatusDriver', 'PUT')
     }
 
-    enableInput() {
-
+    checkInputIfIsDriver(isDriver) {
+        if(isDriver) {
+            document.querySelector('#driver').checked = true
+        }
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    if(location.pathname === '/user/profile') {
-        handleScreen = new HandleScreen()
-        let data = await sendHttpRequest(null, `/user/profile?token=${getCookie('token')}`, 'GET')
-        handleScreen.insertValueInputs(data)
-    }
-})
+async function initialization() {
+    let handleScreen = new HandleScreen(),
+        {expedient, nip, name, email, isDriver} = await getDataUser();
+    handleScreen.insertValueInputs({expedient, nip, name, email})
+    handleScreen.checkInputIfIsDriver(isDriver)
+    document.querySelector('#driver').addEventListener('click', handleScreen.updateStatusDriver)
+}
+
+document.addEventListener('DOMContentLoaded', initialization)

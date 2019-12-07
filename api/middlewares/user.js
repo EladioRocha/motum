@@ -33,7 +33,10 @@ module.exports = {
                     profilePictureUaq: result[2],
                     college: result[1][0],
                     career: result[1][1],
-                    semester: parseInt(result[1][7])
+                    semester: parseInt(result[1][7]),
+                    isDriver: false,
+                    createdAt: new Date(),
+                    updatedAt: new Date()
                 })
 
                 user = inserted.ops[0] 
@@ -49,11 +52,11 @@ module.exports = {
                 expedient: user.expedient,
                 password: user.password,
                 name: user.name,
-                email: user.email
+                email: user.email,
             }, process.env.JWT_KEY_DEV, {
                 expiresIn: '1d'
             })
-            res.cookie('token', res.locals.token)       
+            res.cookie('token', res.locals.token)
 
             return next()
         } catch (error) {
@@ -64,7 +67,14 @@ module.exports = {
 
     isValidToken: (req, res, next) => {
         try {
-            jwt.verify(req.cookies.token, process.env.JWT_KEY_DEV)
+            let {_id, expedient, password, name, email} = jwt.verify(req.cookies.token, process.env.JWT_KEY_DEV)
+            res.locals.user = {
+                _id,
+                expedient,
+                password,
+                name,
+                email
+            }
         } catch(err) {
             return res.location('/login').sendStatus(302)
         }

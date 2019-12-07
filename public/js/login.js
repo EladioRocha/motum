@@ -4,11 +4,6 @@ class Login {
         e.preventDefault()
     }
 
-    saveDataBrowserClient(user, token) {
-        localStorage.setItem('user', JSON.stringify(user))
-        localStorage.setItem('token', token)
-    }
-
     getTextInput(selector = 'input') {
         let str = {}
         document.querySelectorAll(selector).forEach((el) => str[el.id] = el.value)
@@ -34,7 +29,6 @@ async function main(e) {
         login.disableButton()
         console.log(login.getTextInput())
         let {user, token} = await sendHttpRequest(login.getTextInput(), '/user/login', 'POST')
-        login.saveDataBrowserClient(user, token)
         login.enableButton()
         login.redirect()
     }

@@ -24,7 +24,7 @@ io.sockets.on('connection', socketioJwt.authorize({
                     .emit('usersOn', markers)
                 markers[socket.decoded_token._id].isMe = false
             } else {
-                // This meaning the user is the same
+                // This meaning that the user is the same
                 markers[socket.decoded_token._id].isMe = true
                 markers[socket.decoded_token._id].sessionActive++
                 socket.emit('usersOn', markers)
@@ -32,11 +32,17 @@ io.sockets.on('connection', socketioJwt.authorize({
             }
         })
         .on('disconnect', () => {
-            markers[socket.decoded_token._id].sessionActive--
-            if(markers[socket.decoded_token._id].sessionActive === 0) {
-                delete markers[socket.decoded_token._id]
-                socket.broadcast.emit('deleteUserMarker', {markerId: socket.decoded_token._id})
-                console.log('client disconnect')
+            try {
+                if(!!markers[socket.decoded_token._id]) {
+                    markers[socket.decoded_token._id].sessionActive--
+                    if(markers[socket.decoded_token._id].sessionActive === 0) {
+                        delete markers[socket.decoded_token._id]
+                        socket.broadcast.emit('deleteUserMarker', {markerId: socket.decoded_token._id})
+                        console.log('client disconnect')
+                    }
+                }
+            } catch (error) {
+                console.log(error)
             }
         })
     //this socket is authenticated, we are good to handle more events from it.

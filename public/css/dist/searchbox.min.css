@@ -189,26 +189,6 @@ ul {
 	top: 150px;
 }
 
-.origin-icon::before {
-	background-image: url('../../img/map-marker-alt-solid.svg');
-}
-
-.destiny-icon::before {
-	background-image: url('../../img/map-marker-solid.svg');
-}
-
-.date-icon::before {
-	background-image: url('../../img/calendar-day-solid.svg');
-}
-
-.exchange-icon::before {
-	background-image: url('../../img/exchange-alt-solid.svg');
-}
-
-.clock-icon::before {
-	background-image: url('../../img/clock-solid.svg');
-}
-
 .searchbox-menubutton {
 	display: block;
 	padding: 12px 16px
@@ -423,3 +403,29 @@ ul {
   }
   
 /* END SELECT MODIFICADO */
+
+/* ICONS */
+
+.origin-icon::before {
+	background-image: url('../../img/map-marker-alt-solid.svg');
+}
+
+.destiny-icon::before {
+	background-image: url('../../img/map-marker-solid.svg');
+}
+
+.date-icon::before {
+	background-image: url('../../img/calendar-day-solid.svg');
+}
+
+.exchange-icon::before {
+	background-image: url('../../img/exchange-alt-solid.svg');
+}
+
+.clock-icon::before {
+	background-image: url('../../img/clock-solid.svg');
+}
+
+.car-icon::before {
+	background-image: url('../../img/car-solid.svg');
+}

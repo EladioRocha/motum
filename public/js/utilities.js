@@ -22,7 +22,7 @@ function getPosition() {
     })
 }
 
-function setMarker(lat = 0, long = 0, markerId = JSON.parse(localStorage.getItem('user'))._id, isMe) {
+function setMarker(lat = 0, long = 0, markerId = getCookie('_id'), isMe) {
     if(!markers[markerId]) {
         markers[markerId] = L.marker([lat, long], {icon: L.icon({
             iconUrl: '/public/img/troyano.png',
@@ -70,3 +70,13 @@ function getCookie(cname) {
     
     return "";
 }
+
+async function getDataUser() {
+    return await sendHttpRequest(null, `/user/profile?token=${getCookie('token')}`, 'GET');
+}
+
+document.addEventListener('click', (e) => {
+    if(e.target.id === 'close-session') {
+        closeSession()
+    }
+})

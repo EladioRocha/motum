@@ -13,6 +13,7 @@ let UserSchema = Schema({
     college: String,
     career: String,
     semester: Number,
+    isDriver: {type: Boolean, required: true, default: true},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 })

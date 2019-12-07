@@ -1,55 +1,71 @@
-let map, routeControl, markers = {};
+function hideDateInput(e) {
+    document.querySelector('#reserve').removeAttribute('checked')
+    e.target.setAttribute('checked', true)
+    document.querySelector('#item-4').firstElementChild.lastElementChild.firstElementChild.firstElementChild.setAttribute('disabled', true)
+}
 
-// This file include only instances of map and datepicker
-(() => {
-    //Inicializamos el mapa y le pasamos el id del contenedor html
-    map = L.map('map').setView([0,0], 13);
-    //Mandamos a llamar el mapa y le pasamos una configuración por defecto, incluyendo el token
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWxhZGlvcm9jaGEiLCJhIjoiY2syOTd6NjlhMThtMDNncWhjb3FvazBicyJ9.7zHOqJy7Oc4yOnFrXqDi1Q', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZWxhZGlvcm9jaGEiLCJhIjoiY2syOTd6NjlhMThtMDNncWhjb3FvazBicyJ9.7zHOqJy7Oc4yOnFrXqDi1Q'
-    }).addTo(map)
-    
+function showDateInput(e) {
+    document.querySelector('#now').removeAttribute('checked')
+    e.target.setAttribute('checked', true)
+    document.querySelector('#item-4').firstElementChild.lastElementChild.firstElementChild.firstElementChild.removeAttribute('disabled')
+}
 
-    map.zoomControl.setPosition('bottomright')
-    
-    //Aquí empieza el plugin para agregar la barra de buscador, Inicializamos la variable searchboxControl llamado al método
-    let searchboxControl = createSearchboxControl();
-
-    //Instanciamos un objeto de la clase searchboxControl y le tenemos que pasar por parametro el sideBarTitleText
-    let control = new searchboxControl({
-        sidebarTitleText: 'Header'
-    });
-
-    // Nos retornara los valores buscados
-    control._searchfunctionCallBack = function (searchkeywords) {
-        if (!searchkeywords) {
-            searchkeywords = "The search call back is clicked !!"
-        }
+async function takeAride() {
+    let origin = destiny = date = ''
+    origin = document.querySelector('#searchboxinput-origin')
+    destiny = document.querySelector('#searchboxinput-destiny')
+    if(document.querySelector('#reserve').checked) {
+        date = document.querySelector('#datepicker').value
+    } else {
+        let currentDate = new Date
+        date = `${[currentDate.getDate(), currentDate.getMonth()+1, currentDate.getFullYear()].join('/')} ${[currentDate.getHours(), currentDate.getMinutes()].join(':')}`   
     }
 
-    //With this work the input
-    
-    map.addControl(control);
-    
-    // Air picker calendar settings
-    // Initialization
-    $('#datepicker').datepicker({
-        language: 'es',
-        minDate: new Date(),
-        timepicker: true,
-        timeFormat: 'hh:ii',
-        minHours: 0,
-        maxHours: 23,
-        minutesStep: 5
-    }).data('datepicker')
+    let response = await sendHttpRequest(JSON.stringify({
+        origin,
+        destiny,
+        date
+    }), '/user/ride')
+}
 
-    collapsible()
+function setUserImage(image) {
+    document.querySelector('#user-img').src = image
+}
 
-    // Load data from localstorage and show information
-    let user = JSON.parse(localStorage.getItem('user'))
-    document.querySelector('#user-name').innerText = user.name
-    document.querySelector('#user-img').src = user.profilePictureUaq
-})()
+function setUserName(name) {
+    document.querySelector('#user-name').innerText = name.split(' ').pop().split('').map((letter, i) => (i === 0) ? letter : letter.toLowerCase()).join('')
+}
+
+function showMenuBottomIfIsDriver(isDriver) { 
+    if(isDriver) {
+        let rootContainer = document.querySelector('.controlbox-container'),
+            menuBottomHtml = `
+            <div class="controlbox mt-1em" style="top: 170px; z-index: 1000;" id="item-6">
+                <div class="searchbox searchbox-shadow bg-gray" style="border-radius:20px"> 
+                    <div class="searchbox-menu-container">
+                        <button aria-label="Menu" id="searchbox-like-driver" class="car-icon searchbox-menubutton"></button> 
+                    </div>
+                    <div class="active-options">
+                        <div class="controlbox-input-checkbox">
+                            <input class="inp-cbx" checked="true" id="driver" type="radio"  name="rider-or-driver" style="display: none;" /><label class="cbx" for="driver"><span><svg width="12px" height="10px" viewbox="0 0 12 10"><polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span><span>Pasajero</span></label>
+                            <input class="inp-cbx" id="rider" type="radio" name="rider-or-driver" style="display: none;" /><label class="cbx" for="rider"><span><svg width="12px" height="10px" viewbox="0 0 12 10"><polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span><span>Conductor</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+        rootContainer.insertAdjacentHTML('beforeend', menuBottomHtml)
+    }
+}
+
+async function initiliziation() {
+    let {expedient, name, isDriver} = await getDataUser()
+    setUserImage(`/assets/img/students/${expedient}.png`)
+    setUserName(name)
+    showMenuBottomIfIsDriver(isDriver)
+    document.querySelector('#now').addEventListener('click', hideDateInput)
+    document.querySelector('#reserve').addEventListener('click', showDateInput)
+    document.querySelector('#searchboxride').addEventListener('click', takeAride)
+}
+
+document.addEventListener('DOMContentLoaded', initiliziation)

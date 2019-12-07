@@ -3,7 +3,7 @@
 let socket = io.connect('http://localhost:3000/')
 socket.on('connect', () => {
     socket
-        .emit('authenticate', {token: localStorage.getItem('token')})
+        .emit('authenticate', {token: getCookie('token')})
         .on('authenticated', async () => {
             console.log('worked', socket.io)
             // let {lat, long} = await getPosition()
@@ -26,6 +26,6 @@ socket.on('connect', () => {
                 
         })
         .on('unauthorized', () => {
-            location.href = '/'
+            location.href = '/login'
         })
 });

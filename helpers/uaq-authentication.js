@@ -7,7 +7,7 @@ let result = []
 
 async function downloadImage(uri, filename) {
     try {
-        fs.writeFileSync(path.join(__dirname, '..', 'assets', 'img', 'student', filename), await uri.buffer())
+        fs.writeFileSync(path.join(__dirname, '..', 'assets', 'img', 'students', filename), await uri.buffer())
     } catch (error) {
         console.log('Ocurrio un error al descargar la imágen', error)
     }

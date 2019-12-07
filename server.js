@@ -5,19 +5,16 @@ let express = require('express'),
     path = require('path'),
     cookieParser = require('cookie-parser');
 
-// ========== ROUTES ========== 
-let publicPath = path.join(__dirname, 'public'),
-    routesMainPath = path.join(__dirname, 'routes', 'main'),
-    routesUserPath = path.join(__dirname, 'routes', 'user');
 // ========== END ROUTES ==========
 app.use(morgan('dev'));
 app.use(cookieParser())
-app.use('/public', express.static(publicPath))
+app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/assets', express.static(path.join(__dirname, 'assets')))
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.use('/', require(routesMainPath))
-app.use('/user', require(routesUserPath))
+app.use('/', require(path.join(__dirname, 'routes', 'main')))
+app.use('/user', require(path.join(__dirname, 'routes', 'user')))
 
 module.exports = app

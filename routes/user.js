@@ -8,6 +8,8 @@ let router = require('express').Router(),
 router.get('/map', middlewares.isValidToken, controllers.map)
 router.get('/profile', middlewares.isValidToken, controllers.profile)
 router.post('/login', middlewares.isValidUser, controllers.login)
-router.post('/exit', controllers.closeSession)
+router.post('/ride', middlewares.isValidToken, controllers.takeAride)
+router.post('/exit', middlewares.isValidToken, controllers.closeSession)
+router.put('/updateStatusDriver', middlewares.isValidToken, controllers.updateStatusDriver)
 
 module.exports = router;
