@@ -14,6 +14,10 @@ module.exports = {
         return res.sendFile('map.html', {root: viewsPath})
     },
 
+    history: (req, res) => {
+        res.sendFile('history.html', {root: viewsPath})
+    },
+
     profile: async (req, res) => {
         try {
             if(req.query.token) {
@@ -33,11 +37,25 @@ module.exports = {
     },
 
     takeAride: async (req, res) => {
-        console.log(res.locals.user)
-        Ride.insertOne({
-            driver: mongoose.Types.ObjectId(res.locals.user._id),
-            origin
-        })
+        try {
+            await Ride.create({
+                driver: mongoose.Types.ObjectId(res.locals.user._id),
+                riders: [],
+                originName: req.body.originName,
+                destinyName: req.body.destinyName,
+                originCoordinates: req.body.originCoordinates,
+                destinyCoordinates: req.body.destinyCoordinates,
+                hour: req.body.hour,
+                date: req.body.date,
+                reserved: req.body.reserved,
+                finished: false,
+                active: (req.body.reserved) ? false : true,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            })        
+        } catch(error) {
+            console.log(error)
+        }
         
         return res.status(200).json({works: true})
     },

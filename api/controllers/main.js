@@ -8,9 +8,5 @@ module.exports = {
 
     login: (req, res) => {
         res.sendFile('login.html', {root: viewsPath})
-    },
-
-    history: (req, res) => {
-        res.sendFile('history.html', {root: viewsPath})
     }
 }

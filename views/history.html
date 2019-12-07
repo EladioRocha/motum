@@ -17,9 +17,9 @@
                 <span class="fw-600">Eladio Rocha</span>
             </div>
             <div class="nav-options p-1em flex-container">
-                <p class="mb-2em">Pedir un viaje</p>
-                <p class="mb-2em">Viajes</p>
-                <p class="mb-2em txt-selected">Mi cuenta</p>
+                <p class="mb-1em pt-1em">Pedir un viaje</p>
+                <p class="mb-1em txt-selected pt-1em">Viajes</p>
+                <p class="mb-1em pt-1em">Mi cuenta</p>
                 <p class="close-session">
                     <hr class="hr mb-1em">
                     <p class="txt-gray">Cerrar sesión</p>
@@ -27,31 +27,38 @@
             </div>
         </nav>
         <section class="grid-item-profile">
+            <div class="profile-title pt-2em px-1em history-navbar">
+               <span class="fw-600 mr-2em txt-selected history-navbar-text">Activos</span>
+               <span class="fw-600 mr-2em history-navbar-text">Reservados</span>
+               <span class="fw-600 mr-2em history-navbar-text">Finalizados</span>
+            </div>
             <div class="profile-title p-1em flex-container">
-                <h2>Tus viajes</h2>
+                <h2 id="history-title">Tus viajes activos</h2>
             </div>
             <div class="profile-options p-1em grid-container">
-
-                <section>
-                    <!-- card -->
+                <div class="bg-default-container flex-container">
+                    <div class="bg-default-history mb-2em"></div>
+                    <h2>Aún no tienes viajes hechos <span id="start-now">¡Empieza haciendo uno!</span></h2>
+                </div>
+                <!-- card -->
+                <!-- <section>
                     <div class="profile-description-container">
-                        <div class="grid-item-description"><!--viaje 1-->
-                          <div class="card">
-                            <small id="card">27 Noviembre 2019  - 12:45 pm</small><br>
-                            <small id="card1">Tu viaje con Eladio</small><br>
-                            <i class="fas fa-map-marker-alt svg_card"></i>
-                            <small id="card2">Av. de las Ciencias</small><br>
-                            <i class="fas fa-map-marked svg_card"></i>
-                            <small id="card3">Circuito Universitario</small>
-                            <p></p>
-
-                          </div>
+                        <div class="grid-item-description">
+                            <div class="card">
+                                <small id="card">27 Noviembre 2019  - 12:45 pm</small><br>
+                                <small id="card1">Tu viaje con Eladio</small><br>
+                                <i class="fas fa-map-marker-alt svg_card"></i>
+                                <small id="card2">Av. de las Ciencias</small><br>
+                                <i class="fas fa-map-marked svg_card"></i>
+                                <small id="card3">Circuito Universitario</small>
+                            </div>
                         </div>
-                      </div>
-                  </section>
-                </main>
+                    </div>
+                </section> -->
+            </section>
+        </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
-    <script src="/public/js/input-effect.js"></script>
+    <script src="/public/js/history.js"></script>
 </body>
 </html>

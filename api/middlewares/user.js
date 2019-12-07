@@ -90,5 +90,13 @@ module.exports = {
         }
 
         return next()
+    },
+
+    isValidRide: (req, res, next) => {
+        if(!!req.body.originName && !!req.body.destinyName && !!req.body.date && (req.body.originCoordinates.lat || req.body.originCoordinates.long) && (req.body.destinyCoordinates.lat || req.body.destinyCoordinates.long)) {
+            return next()
+        } else {
+            return res.status(422).json({message: 'Faltan campos por llenar'})
+        }
     }
 }

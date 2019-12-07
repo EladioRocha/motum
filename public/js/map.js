@@ -11,18 +11,24 @@ function showDateInput(e) {
 }
 
 async function takeAride() {
-    let origin = destiny = date = isDriver = '',
+    let origin = date = isDriver = '',
         currentDate = new Date;
     origin = document.querySelector('#searchboxinput-origin')
     destiny = document.querySelector('#searchboxinput-destiny')
     date = (document.querySelector('#reserve').checked) ? document.querySelector('#datepicker').value : `${[currentDate.getDate(), currentDate.getMonth()+1, currentDate.getFullYear()].join('/')} ${[currentDate.getHours(), currentDate.getMinutes()].join(':')}`
     isDriver = (document.querySelector('#driver').checked) ? true : false
-    let response = await sendHttpRequest(JSON.stringify({
-        origin,
-        destiny,
+    let originCoordinates = {lat: origin.getAttribute('data-lat'), long: origin.getAttribute('data-long')},
+        destinyCoordinates = {lat: destiny.getAttribute('data-lat'), long: destiny.getAttribute('data-long')},
+        response = await sendHttpRequest(JSON.stringify({
+        originName: origin.value,
+        destinyName: destiny.value,
         date,
-        isDriver
-    }), '/user/ride')
+        isDriver,
+        originCoordinates,
+        destinyCoordinates,
+        hour: date.split(' ').pop(),
+        reserved: (document.querySelector('#reserve').checked) ? true: false
+    }), '/user/ride');
     console.log(response)
 }
 

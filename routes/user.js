@@ -7,8 +7,9 @@ let router = require('express').Router(),
 /* GET users listing. */
 router.get('/map', middlewares.isValidToken, controllers.map)
 router.get('/profile', middlewares.isValidToken, controllers.profile)
+router.get('/history', middlewares.isValidToken, controllers.history)
 router.post('/login', middlewares.isValidUser, controllers.login)
-router.post('/ride', middlewares.isValidToken, controllers.takeAride)
+router.post('/ride', [middlewares.isValidRide ,middlewares.isValidToken], controllers.takeAride)
 router.post('/exit', middlewares.isValidToken, controllers.closeSession)
 router.put('/updateStatusDriver', middlewares.isValidToken, controllers.updateStatusDriver)
 

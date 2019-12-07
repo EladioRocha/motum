@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 /* Historial */
 .card {
   box-shadow: 1px 1px 3px  0px rgba(171, 171, 171, 1);
@@ -5,7 +6,6 @@
   height: 100px;
   margin: auto;
   text-align: center;
-  font-family: arial;
   font-size: 18px;
   border-radius: 5px;
   /* background: rgb(30,144,255); */
@@ -16,8 +16,6 @@
   font-size: 22px;
 }
 
-
-
 .card button:hover {
   opacity: 0.7;
 }
@@ -25,8 +23,33 @@
 .grid-item-history {
   grid-gap: 0;
 }
+
+.bg-default-container {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bg-default-history {
+    height: 20em;
+    width: 20em;
+    flex-basis: 100%;
+    background-image: url('../img/undraw_fast_car_p4cu.svg');
+    background-size: 100% 100%;
+}
+
+.bg-default-container > h2 > span {
+    transition-duration: .4s;
+}
+
+.bg-default-container > h2 > span:hover {
+    cursor: pointer;
+    color: #1c1c1c;
+    transition-duration: .4s;
+}
 /*  */
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 body {
     background-color: #FCFCFC;
@@ -73,6 +96,12 @@ a {
   margin-left: -120px;
 }
 
+.history-navbar > span {
+    cursor: pointer;
+}
+
+/* ============================== END HISTORY ============================== */
+
 
 /* ============================== LANDING PAGE ============================== */
 
@@ -117,7 +146,7 @@ a {
 
 .section-right-content {
     background-image: url('../img/driver-car-man.svg');
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
@@ -491,6 +520,10 @@ a {
 .close-session {
     margin-top: auto;
 }
+
+.leaflet-routing-container {
+    display: none;
+}
 /* ============================== END MAP ============================== */
 
 
@@ -553,8 +586,25 @@ a {
     margin-top: 3em;
 }
 
+.mr-2em {
+    margin-right: 2em;
+}
+
 .p-1em {
     padding: 1em;
+}
+
+.pt-1em {
+    padding-top: 1em;
+}
+
+.pt-2em {
+    padding: 2em;
+}
+
+.px-1em {
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .btn {
