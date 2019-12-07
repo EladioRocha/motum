@@ -11,21 +11,19 @@ function showDateInput(e) {
 }
 
 async function takeAride() {
-    let origin = destiny = date = ''
+    let origin = destiny = date = isDriver = '',
+        currentDate = new Date;
     origin = document.querySelector('#searchboxinput-origin')
     destiny = document.querySelector('#searchboxinput-destiny')
-    if(document.querySelector('#reserve').checked) {
-        date = document.querySelector('#datepicker').value
-    } else {
-        let currentDate = new Date
-        date = `${[currentDate.getDate(), currentDate.getMonth()+1, currentDate.getFullYear()].join('/')} ${[currentDate.getHours(), currentDate.getMinutes()].join(':')}`   
-    }
-
+    date = (document.querySelector('#reserve').checked) ? document.querySelector('#datepicker').value : `${[currentDate.getDate(), currentDate.getMonth()+1, currentDate.getFullYear()].join('/')} ${[currentDate.getHours(), currentDate.getMinutes()].join(':')}`
+    isDriver = (document.querySelector('#driver').checked) ? true : false
     let response = await sendHttpRequest(JSON.stringify({
         origin,
         destiny,
-        date
+        date,
+        isDriver
     }), '/user/ride')
+    console.log(response)
 }
 
 function setUserImage(image) {
@@ -47,8 +45,8 @@ function showMenuBottomIfIsDriver(isDriver) {
                     </div>
                     <div class="active-options">
                         <div class="controlbox-input-checkbox">
-                            <input class="inp-cbx" checked="true" id="driver" type="radio"  name="rider-or-driver" style="display: none;" /><label class="cbx" for="driver"><span><svg width="12px" height="10px" viewbox="0 0 12 10"><polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span><span>Pasajero</span></label>
-                            <input class="inp-cbx" id="rider" type="radio" name="rider-or-driver" style="display: none;" /><label class="cbx" for="rider"><span><svg width="12px" height="10px" viewbox="0 0 12 10"><polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span><span>Conductor</span></label>
+                            <input class="inp-cbx" checked="true" id="rider" type="radio"  name="rider-or-driver" style="display: none;" /><label class="cbx" for="rider"><span><svg width="12px" height="10px" viewbox="0 0 12 10"><polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span><span>Pasajero</span></label>
+                            <input class="inp-cbx" id="driver" type="radio" name="rider-or-driver" style="display: none;" /><label class="cbx" for="driver"><span><svg width="12px" height="10px" viewbox="0 0 12 10"><polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span><span>Conductor</span></label>
                         </div>
                     </div>
                 </div>

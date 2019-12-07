@@ -5,8 +5,10 @@ let Schema = mongoose.Schema
 let RideSchema = Schema({
     driver: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     riders: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}],
-    origin: {type: String, required: true},
-    destiny: {type: String, required: true},
+    originName: {type: String, required: true},
+    destinyName: {type: String, required: true},
+    originCoordinates: {type: String, required: true},
+    destinyCOordinate: {type: String, required: true},
     hour: {type: String, required: true},
     date: {type: Date},
     reserved: {type: Boolean, required: true},

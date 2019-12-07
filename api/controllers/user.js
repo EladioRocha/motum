@@ -19,7 +19,6 @@ module.exports = {
             if(req.query.token) {
                 let data = jwt.verify(req.cookies.token, process.env.JWT_KEY_DEV)
                 if(data) {
-                    console.log(req.path)
                     let {isDriver} = await User.findOne({expedient: data.expedient}, ['isDriver'])
                     return res.status(200).json({expedient: data.expedient, nip: '********', name: data.name, email: data.email, isDriver})
                 }
@@ -35,14 +34,17 @@ module.exports = {
 
     takeAride: async (req, res) => {
         console.log(res.locals.user)
+        Ride.insertOne({
+            driver: mongoose.Types.ObjectId(res.locals.user._id),
+            origin
+        })
         
         return res.status(200).json({works: true})
     },
 
     updateStatusDriver: async (req, res) => {
-        let user = new User()
         let {_id} = res.locals.user
-        user.collection.update({
+        User.update({
             _id: mongoose.Types.ObjectId(_id)
         }, {$set: {
                 isDriver: req.body.isDriver,
