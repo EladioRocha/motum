@@ -45,6 +45,35 @@ a {
     text-decoration: none;
 }
 
+#card
+{
+  text-align: right;
+  margin-left: -20px;
+}
+
+#card1
+{
+  text-align: right;
+  margin-left: -100px;
+}
+/* #card2
+{
+  margin-left: 2px;
+}
+#card3
+{
+  margin-left: 2px;
+} */
+.card
+{
+  margin-left: 0px;
+}
+.svg_card
+{
+  margin-left: -120px;
+}
+
+
 /* ============================== LANDING PAGE ============================== */
 
 .nav-text {
