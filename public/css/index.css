@@ -2,7 +2,7 @@
 .card {
   box-shadow: 1px 1px 3px  0px rgba(171, 171, 171, 1);
   width: 300px;
-  heigth 100px;
+  height: 100px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -136,6 +136,10 @@ a {
 }
 
 @media (max-width: 576px) {
+
+}
+
+@media (max-width: 768px) {
     button {
         width: 100% !important;
     }
@@ -195,12 +199,22 @@ a {
     }
 }
 
-@media (max-width: 768px) {
-    
-}
-
 @media (max-width: 992px) {
-    
+    .section-left-content > h2 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+
+    .grid-item-title > h2 {
+        font-size: 0.9em;
+    }
+
+    footer > div > span {
+        font-size: 0.8em;
+    }
 }
 
 @media (max-width: 1200px) {
