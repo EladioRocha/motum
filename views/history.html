@@ -86,6 +86,49 @@
                             </div>
                         </div>
                     </div>
+                    <div class="profile-description-container">
+                        <div class="grid-item-description">
+                            <div class="card p-1em">
+                                <div class="card-item card-name flex-container">
+                                    <div class="icon-box">
+                                        <img class="icon-profile" src="/assets/img/students/${driver.expedient}.png" alt="Imágen del conductor">
+                                    </div>
+                                    <div class="text-box flex-container">
+                                        <small class="user-text-name px-1em">${driver.name}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-date flex-container">
+                                    <div class="icon-box">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="text-box">
+                                        <small class="txt-0-dot-5em px-1em">${date}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-origin flex-container">
+                                    <div class="icon-box">
+                                        <i class="fas fa-map-marker-alt svg_card"></i>
+                                    </div>
+                                    <div class="text-box">
+                                        <small class="px-1em">${originName}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-destiny flex-container">
+                                    <div class="icon-box">
+                                        <i class="fas fa-map-marker"></i>
+                                    </div>
+                                    <div class="text-box">
+                                        <small class="px-1em">${destinyName}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-button flex-container mt-1em">
+                                    <div class="text-box">
+                                        <button class="btn bg-green txt-white" id="${_id}">Solicitar viaje</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
