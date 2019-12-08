@@ -403,29 +403,3 @@ ul {
   }
   
 /* END SELECT MODIFICADO */
-
-/* ICONS */
-
-.origin-icon::before {
-	background-image: url('../../img/map-marker-alt-solid.svg');
-}
-
-.destiny-icon::before {
-	background-image: url('../../img/map-marker-solid.svg');
-}
-
-.date-icon::before {
-	background-image: url('../../img/calendar-day-solid.svg');
-}
-
-.exchange-icon::before {
-	background-image: url('../../img/exchange-alt-solid.svg');
-}
-
-.clock-icon::before {
-	background-image: url('../../img/clock-solid.svg');
-}
-
-.car-icon::before {
-	background-image: url('../../img/car-solid.svg');
-}

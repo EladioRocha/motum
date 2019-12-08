@@ -2,10 +2,8 @@
 /* Historial */
 .card {
   box-shadow: 1px 1px 3px  0px rgba(171, 171, 171, 1);
-  width: 300px;
-  height: 100px;
+  max-width: 300px;
   margin: auto;
-  text-align: center;
   font-size: 18px;
   border-radius: 5px;
   /* background: rgb(30,144,255); */
@@ -68,32 +66,25 @@ a {
     text-decoration: none;
 }
 
-#card
-{
-  text-align: right;
-  margin-left: -20px;
+.card-item > div:nth-child(1) {
+    width: 10%;
+    height: 10%;
 }
 
-#card1
-{
-  text-align: right;
-  margin-left: -100px;
+.card-item > div:nth-child(2) {
+    width: 90%;
+    height: 90%;
+    margin: 0;
+    padding: 0;
 }
-/* #card2
-{
-  margin-left: 2px;
+
+.card-title {
+    justify-content: center;
 }
-#card3
-{
-  margin-left: 2px;
-} */
+
 .card
 {
   margin-left: 0px;
-}
-.svg_card
-{
-  margin-left: -120px;
 }
 
 .history-navbar > span {
@@ -645,6 +636,10 @@ a {
     color: #8E8E8E;
 }
 
+.txt-gray-dark {
+    color: rgb(49, 49, 49);
+}
+
 .fw-bold {
     font-weight: bold;
 }
@@ -660,6 +655,10 @@ a {
 .txt-selected {
     color: #1c1c1c;
     border-bottom: 2px solid rgba(47, 214, 154, 0.3);
+}
+
+.txt-0-dot-5em {
+    font-size: 0.7em;
 }
 
 .txt-1-dot-5em {
@@ -683,10 +682,28 @@ div.pac-logo:after {
 /* END GOOGLE MAPS API CONTAINER */
 
 
+/* ICONS */
 
-/*  */
+.origin-icon::before {
+	background-image: url('../img/map-marker-alt-solid.svg');
+}
 
-.p-1em.2 {
-    padding: 5em;
-    margin-right: 50em;
+.destiny-icon::before {
+	background-image: url('../img/map-marker-solid.svg');
+}
+
+.date-icon::before {
+	background-image: url('../img/calendar-day-solid.svg');
+}
+
+.exchange-icon::before {
+	background-image: url('../img/exchange-alt-solid.svg');
+}
+
+.clock-icon::before {
+	background-image: url('../img/clock-solid.svg');
+}
+
+.car-icon::before {
+	background-image: url('../img/car-solid.svg');
 }

@@ -31,8 +31,8 @@ function showCards() {
 
 }
 
-function getAllCards() {
-    getData
+async function getAllCards() {
+    let response = await sendHttpRequest(null, '/user/rides/all', 'GET') 
 }
 
 function changeViewHistory(e) {

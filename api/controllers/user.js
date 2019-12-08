@@ -39,7 +39,7 @@ module.exports = {
     takeAride: async (req, res) => {
         try {
             await Ride.create({
-                driver: mongoose.Types.ObjectId(res.locals.user._id),
+                driver: (req.body.isDriver) ? mongoose.Types.ObjectId(res.locals.user._id) : {},
                 riders: [],
                 originName: req.body.originName,
                 destinyName: req.body.destinyName,
@@ -50,6 +50,8 @@ module.exports = {
                 reserved: req.body.reserved,
                 finished: false,
                 active: (req.body.reserved) ? false : true,
+                aroundOriginCoordinates: req.body.aroundOriginCoordinates,
+                aroundDestinyCoordinates: req.body.aroundDestinyCoordinates,
                 createdAt: new Date(),
                 updatedAt: new Date()
             })        
@@ -70,6 +72,19 @@ module.exports = {
             }})
         
         return res.status(200).json({works: true})
+    },
+
+    getAllRides: async (req, res) => {
+        try {
+            console.log(res.locals.user)
+            await Ride.findOne({
+                riders: {$in: []}
+            })
+            return res.status(200).json({message: true})
+        } catch (error) {
+            console.log('Ha ocurrido un erro en la base de datos', error)
+            res.status(500).json({message: 'Ha ocurrido un erro en la base de datos'})
+        }
     },
 
     closeSession: (req, res) => {

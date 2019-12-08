@@ -57,7 +57,7 @@ class Profile extends InputHandle {
 class HandleScreen extends InputHandle {
     constructor() {
         super()
-        this._inputs = document.querySelectorAll('.input')
+        this._inputs = document.querySelectorAll('input.input')
     }
 
     insertValueInputs(data) {

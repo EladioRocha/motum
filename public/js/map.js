@@ -18,8 +18,8 @@ async function takeAride() {
     date = (document.querySelector('#reserve').checked) ? document.querySelector('#datepicker').value : `${[currentDate.getDate(), currentDate.getMonth()+1, currentDate.getFullYear()].join('/')} ${[currentDate.getHours(), currentDate.getMinutes()].join(':')}`
     isDriver = (document.querySelector('#driver').checked) ? true : false
     let originCoordinates = {lat: origin.getAttribute('data-lat'), long: origin.getAttribute('data-long')},
-        destinyCoordinates = {lat: destiny.getAttribute('data-lat'), long: destiny.getAttribute('data-long')},
-        response = await sendHttpRequest(JSON.stringify({
+    destinyCoordinates = {lat: destiny.getAttribute('data-lat'), long: destiny.getAttribute('data-long')},
+    response = await sendHttpRequest(JSON.stringify({
         originName: origin.value,
         destinyName: destiny.value,
         date,
@@ -27,8 +27,11 @@ async function takeAride() {
         originCoordinates,
         destinyCoordinates,
         hour: date.split(' ').pop(),
-        reserved: (document.querySelector('#reserve').checked) ? true: false
-    }), '/user/ride');
+        reserved: (document.querySelector('#reserve').checked) ? true: false,
+        aroundOriginCoordinates: destVincenty(parseFloat(originCoordinates.lat), parseFloat(originCoordinates.long), 90, 2000),
+        aroundDestinyCoordinates: destVincenty(parseFloat(destinyCoordinates.lat), parseFloat(destinyCoordinates.long), -90, 2000)
+    }), '/user/rides/add');
+    console.log(destinyCoordinates, parseFloat(originCoordinates.long))
     console.log(response)
 }
 
