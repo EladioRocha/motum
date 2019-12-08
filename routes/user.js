@@ -6,7 +6,7 @@ let router = require('express').Router(),
 
 /* GET users listing. */
 router.get('/map', middlewares.isValidToken, controllers.map)
-router.get('/profile', middlewares.isValidToken, controllers.profile)
+router.get('/profile', controllers.profile) // FALTA AGREGAR MIDDLEWARE TOKEN
 router.get('/history', middlewares.isValidToken, controllers.history)
 router.get('/rides/community/all', middlewares.isValidToken, controllers.getAllCommunityRides)
 

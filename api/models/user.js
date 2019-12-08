@@ -5,7 +5,7 @@ let Schema = mongoose.Schema
 let UserSchema = Schema({
     name: String,
     email: String,
-    expedient: {type: String, unique: true},
+    expedient: {type: String, unique: true, required: true},
     password: String,
     birthday: String,
     profilePictureUaq: String,
