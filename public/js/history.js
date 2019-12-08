@@ -120,7 +120,7 @@ function htmlCommunityCards({_id, date, originName, destinyName, driver}) {
                         <div class="card p-1em">
                             <div class="card-item card-name flex-container">
                                 <div class="icon-box">
-                                    <img class="icon-profile" src="/assets/img/students/244242.png" alt="Imágen del conductor">
+                                    <img class="icon-profile" src="/assets/img/students/${driver.expedient}.png" alt="Imágen del conductor">
                                 </div>
                                 <div class="text-box flex-container">
                                     <small class="user-text-name px-1em">${driver.name}</small>

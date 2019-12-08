@@ -85,7 +85,7 @@ module.exports = {
         try {
             let response = await Ride.find({
                 driver: {$ne: null}
-            }, ['_id', 'originName', 'destinyName', 'date', 'driver']).populate('driver', 'name')
+            }, ['_id', 'originName', 'destinyName', 'date', 'driver']).populate('driver', 'name expedient')
             return res.status(200).json({data: response})
         } catch (error) {
             console.log('Ha ocurrido un erro en la base de datos', error)
