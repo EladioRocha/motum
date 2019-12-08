@@ -94,6 +94,10 @@ a {
     align-items: center;
     justify-content: center;
 }
+
+.card-position{
+  float: left;
+}
 /* ============================== END HISTORY ============================== */
 
 
@@ -237,7 +241,7 @@ a {
     .grid-item-title > h2 {
         font-size: 0.9em;
     }
-    
+
     .benefit-img {
         margin: 0 auto;
     }
@@ -270,7 +274,7 @@ a {
 }
 
 @media (max-width: 1200px) {
-    
+
 }
 
 /* ============================== END LANDING PAGE ============================== */
