@@ -3,6 +3,7 @@ let jwt = require('jsonwebtoken'),
     mongoose = require('mongoose'),
     Ride = require(path.join(__dirname, '..', 'models', 'ride')),
     User = require(path.join(__dirname, '..', 'models', 'user')),
+    RequestRide = require(path.join(__dirname, '..', 'models', 'requestRide')),
     viewsPath = path.join(__dirname, '..', '..', 'views');
 
 module.exports = {
@@ -39,7 +40,7 @@ module.exports = {
     takeAride: async (req, res) => {
         try {
             await Ride.create({
-                driver: (req.body.isDriver) ? mongoose.Types.ObjectId(res.locals.user._id) : {},
+                driver: (req.body.isDriver) ? mongoose.Types.ObjectId(res.locals.user._id) : null,
                 riders: [],
                 originName: req.body.originName,
                 destinyName: req.body.destinyName,
@@ -63,27 +64,51 @@ module.exports = {
     },
 
     updateStatusDriver: async (req, res) => {
-        let {_id} = res.locals.user
-        User.update({
-            _id: mongoose.Types.ObjectId(_id)
-        }, {$set: {
+        try {
+            let {_id} = res.locals.user
+            await User.update({
+                _id
+            }, {$set: {
                 isDriver: req.body.isDriver,
                 updatedAt: new Date() 
             }})
-        
-        return res.status(200).json({works: true})
+            console.log(_id)
+            
+            return res.status(200).json({works: true})
+        } catch (error) {
+            console.log('Ha ocurrido un error en el servidor', error)
+            res.status(500).json({message: 'Ha ocurrido un error en el servidro, intentelo más tarde'})
+        }
     },
 
-    getAllRides: async (req, res) => {
+    getAllCommunityRides: async (req, res) => {
         try {
-            console.log(res.locals.user)
-            await Ride.findOne({
-                riders: {$in: []}
-            })
-            return res.status(200).json({message: true})
+            let response = await Ride.find({
+                driver: {$ne: null}
+            }, ['_id', 'originName', 'destinyName', 'date', 'driver']).populate('driver', 'name')
+            return res.status(200).json({data: response})
         } catch (error) {
             console.log('Ha ocurrido un erro en la base de datos', error)
             res.status(500).json({message: 'Ha ocurrido un erro en la base de datos'})
+        }
+    },
+
+    requestRide: async (req, res) => {
+        try {
+            let {_id, driver} = await Ride.findOne({
+                _id: mongoose.Types.ObjectId(req.body._id)
+            }, ['_id']).populate('driver', '_id')
+
+            await RequestRide.create({
+                ride: _id,
+                driver: driver._id,
+                rider: res.locals.user._id
+            })
+            console.log(res.locals.user._id)
+            return res.status(200).json({works: true})
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({works: false})
         }
     },
 

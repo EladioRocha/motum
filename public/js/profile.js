@@ -79,7 +79,8 @@ class HandleScreen extends InputHandle {
 
     async updateStatusDriver(e) {
         let isDriver = (e.target.checked) ? true : false
-        await sendHttpRequest(JSON.stringify({isDriver}), '/user/updateStatusDriver', 'PUT')
+        console.log(isDriver)
+        await sendHttpRequest(JSON.stringify({isDriver}), '/user/status', 'PUT')
     }
 
     checkInputIfIsDriver(isDriver) {

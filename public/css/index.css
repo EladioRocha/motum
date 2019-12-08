@@ -2,7 +2,7 @@
 /* Historial */
 .card {
   box-shadow: 1px 1px 3px  0px rgba(171, 171, 171, 1);
-  max-width: 300px;
+  max-width: 400px;
   margin: auto;
   font-size: 18px;
   border-radius: 5px;
@@ -71,26 +71,29 @@ a {
     height: 10%;
 }
 
-.card-item > div:nth-child(2) {
-    width: 90%;
-    height: 90%;
-    margin: 0;
-    padding: 0;
-}
-
 .card-title {
     justify-content: center;
 }
 
-.card
-{
-  margin-left: 0px;
+.card {
+    grid-column: auto;
+    margin-left: 0px;
 }
 
 .history-navbar > span {
     cursor: pointer;
 }
 
+.icon-profile {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.text-box {
+    align-items: center;
+    justify-content: center;
+}
 /* ============================== END HISTORY ============================== */
 
 

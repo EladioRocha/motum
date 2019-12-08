@@ -16,6 +16,7 @@ let RideSchema = Schema({
     active: {type: Boolean, required: true, default: false},
     aroundOriginCoordinates: {type: Object, required: true},
     aroundDestinyCoordinates: {type: Object, required: true},
+    seats: {type: Number, default: null},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 })
