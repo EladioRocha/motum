@@ -11,38 +11,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            google.maps.event.addListener(autocomplete[i], 'place_changed', function () {
-                let near_place = autocomplete[i].getPlace();
-                if(!!near_place.geometry) {
-                    waypoints[i] = [near_place.geometry.location.lat(),near_place.geometry.location.lng()]
-                    map.setView([near_place.geometry.location.lat(),near_place.geometry.location.lng()], 13)
-    
-                    if(waypoints[0].length === 2 && waypoints[1].length === 2) {
-                        // The variable routeControl is in the file and too the variable map map.js
-                        if(!!routeControl) {
-                            routeControl.getPlan().setWaypoints({latLng: L.latLng([0, 0])})
-                        }
-                        document.querySelector('#searchboxinput-origin').setAttribute('data-lat', waypoints[0][0])
-                        document.querySelector('#searchboxinput-origin').setAttribute('data-long', waypoints[0][1])
-                        document.querySelector('#searchboxinput-destiny').setAttribute('data-lat', waypoints[1][0])
-                        document.querySelector('#searchboxinput-destiny').setAttribute('data-long', waypoints[1][1])
-    
-                        routeControl = L.Routing.control({
-                            waypoints: [
-                                L.latLng(waypoints[0][0], waypoints[0][1]),
-                                L.latLng(waypoints[1][0], waypoints[1][1])
-                            ],
-                            draggableWaypoints : false,//to set draggable option to false
-                            addWaypoints : false //disable adding new waypoints to the existing path 
-                        }).addTo(map);
-                    }
-                } else {
-                    alert('El lugar especificado no existe')
-                }
-            });
+            google.maps.event.addListener(autocomplete[i], 'place_changed', () => setMarkersPlace(autocomplete, waypoints, inputIds, i));
         }        
     } catch (error) {
         console.log(error)
     }
-
 });
+
+function setMarkersPlace(autocomplete, waypoints, inputIds, i) {
+    let near_place = autocomplete[i].getPlace();
+    if(!!near_place.geometry) {
+        waypoints[i] = [near_place.geometry.location.lat(),near_place.geometry.location.lng()]
+        map.setView([near_place.geometry.location.lat(),near_place.geometry.location.lng()], 13)
+
+        if(waypoints[0].length === 2 && waypoints[1].length === 2) {
+            // The variable routeControl is in the file map-settings.js and variable map too
+            if(!!routeControl) {
+                routeControl.getPlan().setWaypoints({latLng: L.latLng([0, 0])})
+            }
+            document.querySelector('#searchboxinput-origin').setAttribute('data-lat', waypoints[0][0])
+            document.querySelector('#searchboxinput-origin').setAttribute('data-long', waypoints[0][1])
+            document.querySelector('#searchboxinput-destiny').setAttribute('data-lat', waypoints[1][0])
+            document.querySelector('#searchboxinput-destiny').setAttribute('data-long', waypoints[1][1])
+
+            routeControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(waypoints[0][0], waypoints[0][1]),
+                    L.latLng(waypoints[1][0], waypoints[1][1])
+                ],
+                draggableWaypoints : false,//to set draggable option to false
+                addWaypoints : false //disable adding new waypoints to the existing path 
+            }).addTo(map);
+        }
+    } else {
+        alert('El lugar especificado no existe')
+    }
+}

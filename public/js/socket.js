@@ -1,6 +1,7 @@
 // let socket = io.connect('http://148.220.208.55:3000/');
 // let socket = io.connect('http://192.168.1.73:3000')
-let socket = io.connect('http://localhost:3000/')
+// let socket = io.connect('http://192.168.1.77:3000')
+let socket = io.connect()
 socket.on('connect', () => {
     socket
         .emit('authenticate', {token: getCookie('token')})
@@ -23,9 +24,28 @@ socket.on('connect', () => {
                 .on('deleteUserMarker', (data) => {
                     removeMarker(data.markerId)
                 })
-                
+                .on('newConnection', (data) => {
+                    console.log(data)
+                })
+                .on('messageCommunity', (data) => {
+                    console.log(data)
+                })   
         })
         .on('unauthorized', () => {
             location.href = '/login'
         })
 });
+
+// FUNCTION TO WORK WITH HISTORY FILE
+function createRoom(_id) { // Create room when the request is accepted
+    socket.emit('createRoom', {_id})
+}
+
+function createChatRoom(data) {
+    socket.emit('createChatRoom', data)
+}
+
+function sendMessageToRoom(data) {
+    console.log(data)
+    socket.emit('sendMessageToRoom', data)
+}

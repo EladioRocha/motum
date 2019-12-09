@@ -23,23 +23,27 @@ function getPosition() {
 }
 
 function setMarker(lat = 0, long = 0, markerId = getCookie('_id'), isMe) {
-    if(!markers[markerId]) {
-        markers[markerId] = L.marker([lat, long], {icon: L.icon({
-            iconUrl: '/public/img/troyano.png',
-            iconSize: [24, 24],
-            iconAnchor:   
-            [24, 24], // point of the icon which will correspond to marker's location
-        })}).addTo(map)
-    }
-
-    if(isMe) {
-        map.setView([lat, long], 16)
+    if(location.pathname === '/user/map') {
+        if(!markers[markerId]) {
+            markers[markerId] = L.marker([lat, long], {icon: L.icon({
+                iconUrl: '/public/img/troyano.png',
+                iconSize: [24, 24],
+                iconAnchor:   
+                [24, 24], // point of the icon which will correspond to marker's location
+            })}).addTo(map)
+        }
+    
+        if(isMe) {
+            map.setView([lat, long], 16)
+        }
     }
 }
 
 function removeMarker(id) {
-    map.removeLayer(markers[id])
-    delete markers[id]
+    if(location.pathname === '/user/map') {
+        map.removeLayer(markers[id])
+        delete markers[id]
+    }
 }
 
 async function showAllDrivers(data) {
@@ -126,3 +130,20 @@ document.addEventListener('click', (e) => {
         closeSession()
     }
 })
+
+function showToast(message, status) {
+    let toast = document.querySelector("#toast"),
+        color = '';
+    
+    if(status === 'OK') {
+        color = '#2FD69A'
+    } else if(status === 'ALERT') {
+        color = '#fa9614'
+    } else if(status === 'WARNING') {
+        color = '#f52f38'
+    }
+    toast.style.backgroundColor = color
+    toast.innerText = message
+    toast.className = "show";
+    setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
+}

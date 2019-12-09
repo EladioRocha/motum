@@ -34,7 +34,7 @@ module.exports = {
                     college: result[1][0],
                     career: result[1][1],
                     semester: parseInt(result[1][7]),
-                    isDriver: false,
+                    isDriver: true,
                     createdAt: new Date(),
                     updatedAt: new Date()
                 })
@@ -96,7 +96,7 @@ module.exports = {
         if(!!req.body.originName && !!req.body.destinyName && !!req.body.date && (req.body.originCoordinates.lat || req.body.originCoordinates.long) && (req.body.destinyCoordinates.lat || req.body.destinyCoordinates.long)) {
             return next()
         } else {
-            return res.status(422).json({message: 'Faltan campos por llenar'})
+            return res.status(422).json({message: 'Faltan campos por llenar', status: 'ALERT'})
         }
     }
 }
