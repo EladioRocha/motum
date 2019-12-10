@@ -184,6 +184,28 @@ a {
     width: 125px;
     height: 125px;
 }
+.img1
+{
+  background-image: url('../img/Reloj.jpg');
+  width: 125px;
+  height: 125px;
+}
+
+.img2
+{
+  background-image: url('../img/Ubicacion.jpg');
+  width: 150px;
+  height: 125px;
+}
+
+.img3
+{
+  background-image: url('../img/mensaje.jpg');
+  width: 150px;
+  height: 125px;
+}
+
+
 
 .footer-container {
     justify-content: space-evenly;
@@ -880,7 +902,7 @@ div.pac-logo:after {
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
+  from {bottom: 0; opacity: 0;}
   to {bottom: 30px; opacity: 1;}
 }
 
@@ -890,7 +912,7 @@ div.pac-logo:after {
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
+  from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
 
@@ -958,4 +980,4 @@ textarea:focus {
 /* Add some hover effects to buttons */
 .btn:hover, .open-button:hover {
   opacity: 1;
-} 
+}
