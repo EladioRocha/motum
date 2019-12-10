@@ -2,7 +2,8 @@
 /* Historial */
 .card {
   box-shadow: 1px 1px 3px  0px rgba(171, 171, 171, 1);
-  max-width: 400px;
+  width: 400px;
+  height: 230px;
   margin: auto;
   font-size: 18px;
   border-radius: 5px;
@@ -281,6 +282,139 @@ a {
 
 /* ============================== LOGIN ============================== */
 
+@media (max-width: 576px) {
+    .controlbox-container {
+        width: 96vw;
+        display: none;
+        margin-left: 1.9vw;
+    }
+
+    .bg-default-history {
+        width: 100%;
+        position: relative;
+        height: 100%;
+    }
+
+    #text-default-history {
+        font-size: 7vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    #start-now {
+        font-size: 7vw;
+    }
+
+    .searchbox {
+        width: 95vw;
+        margin-left: 2.5px;
+    }
+
+    #datepicker, ::placeholder {
+        color: #8E8E8E !important;
+    }
+
+    label.cbx {
+        width: 100px;
+    }
+
+    .img {
+        display: none !important;
+    }
+
+    .login-container {
+        height: 100vh;
+        width: 90vw;
+        overflow-y: hidden !important;
+        justify-content: center !important;
+    }
+
+    main.container {
+        height: 100%;
+        position: relative !important;
+        display: flex;
+        justify-content: center;
+        overflow: hidden !important;
+    }
+
+    input#expedient, ::placeholder {
+        color: white !important;
+    }
+
+    main.map-container {
+        display: block;
+    }
+
+    .navbar-container {
+        display: none !important;
+    }
+
+    #navbar-mobile {
+        display: flex !important;
+    }
+
+    .profile-container {
+        display: block !important;
+        overflow: hidden;
+    }
+
+    #profile-info {
+        display: block !important;
+    }
+
+    #profile-info-text {
+        width: 90vw;
+        margin-bottom: 2em;
+        overflow-y: hidden;
+        height: auto;
+    }
+
+    .history-navbar {
+        width: auto;
+        overflow-x: scroll;
+        height: 100%;
+        white-space: nowrap;
+    }
+
+    .history-navbar > span {
+        display: inline-block;
+    }
+
+
+    .card-position {
+        width: 100vw;
+    }
+
+    #form-profile {
+        margin-bottom: 2em;
+        width: 90vw;
+    }
+}
+
+@media (min-width: 768px) {
+    #navbar-mobile {
+        display: none !important;
+    }
+
+    #map {
+        height: 100% !important;
+    }
+
+    .profile-description-container {
+        grid-gap: 0 !important;
+    }
+
+    .card-position {
+        width: 40vw;
+    }
+}
+
+@media (min-width: 992px) {
+    .profile-description-container {
+        grid-gap: 150px !important;
+    }
+}
+
 .wave {
     position: fixed;
     height: 100%;
@@ -435,45 +569,6 @@ a {
 
 .avatar {
     width: 100px;
-}
-
-@media screen and (max-width: 1050px) {
-    .container {
-        grid-gap: 5rem;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .form {
-        width: 290px;
-    }
-
-    .form h2 {
-        font-size: 2.4rem;
-        margin: 8px 0;
-    }
-
-    .img img {
-        width: 400px;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .img {
-        display: none;
-    }
-
-    .container {
-        grid-template-columns: 1fr;
-    }
-
-    .wave {
-        display: none;
-    }
-
-    .login-container {
-        justify-content: center;
-    }
 }
 
 /* ============================== END LOGIN ============================== */

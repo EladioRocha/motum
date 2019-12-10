@@ -147,3 +147,34 @@ function showToast(message, status) {
     toast.className = "show";
     setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
 }
+
+function showMenuBarMobile(e) {
+    console.log(e.target.id)
+    if(e.target.id === '') {
+        e.target.id = e.target.children[0].id
+    }
+    if(e.target.id === 'open-menu') {
+        if(document.querySelector('#navbar-mobile-options').style.display === 'inline-flex') {
+            if(document.querySelector('#map')) {
+                document.querySelector('#map').style.display = 'block'
+            }
+            document.querySelector('#navbar-mobile-options').style.display = 'none'
+        } else {
+            document.querySelector('#navbar-mobile-options').style.display = 'inline-flex'
+            if(document.querySelector('#map')) {
+                document.querySelector('#map').style.display = 'none'
+            }
+        }
+    } else if(e.target.id === 'show-options-ride') {
+        if(document.querySelector('#map')) {
+            document.querySelector('#map').style.display = 'block'
+        }
+        if(document.querySelector('.controlbox-container').style.display === 'none' || document.querySelector('.controlbox-container').style.display === '') {
+            document.querySelector('.controlbox-container').style.display = 'block'
+        } else {
+            document.querySelector('.controlbox-container').style.display = 'none'
+        }
+    }
+}
+
+document.querySelector('#navbar-mobile').addEventListener('click', showMenuBarMobile)

@@ -7,9 +7,9 @@ socket.on('connect', () => {
         .emit('authenticate', {token: getCookie('token')})
         .on('authenticated', async () => {
             console.log('worked', socket.io)
-            // let {lat, long} = await getPosition()
-            let lat = 21.36161363911997 + Math.random()
-            let long = -100.145994012827
+            let {lat, long} = await getPosition()
+            // let lat = 21.36161363911997 + Math.random()
+            // let long = -100.145994012827
             console.log(lat, long)
             socket
                 .emit('userCoords', {lat, long})

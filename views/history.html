@@ -11,14 +11,14 @@
 </head>
 <body>
     <main class="profile-container grid-container">
-        <nav class="grid-item-nav">
+        <nav class="grid-item-nav navbar-container">
             <div class="nav-user p-1em flex-container">
-                <img src="/public/img/avatar.svg" alt="Image user profile">
-                <span class="fw-600">Eladio Rocha</span>
+                <img src="/public/img/avatar.svg" alt="Image user profile" id="user-img">
+                <span class="fw-600" id="user-name">Eladio Rocha</span>
             </div>
             <div class="nav-options p-1em flex-container">
                 <a class="mb-2em txt-gray" href="/user/map">Pedir un viaje</a>
-                <a class="mb-2em txt-gray txt-selected" href="/user/history">Viajes</a>
+                <a class="mb-2em txt-selected" href="/user/history">Viajes</a>
                 <a class="mb-2em txt-gray" href="/user/profile">Mi cuenta</a>
                 <p class="close-session">
                     <hr class="hr mb-1em">
@@ -26,6 +26,19 @@
                 </p>
             </div>
         </nav>
+        <div  id="navbar-mobile" style="background-color: #FCFCFC; width: 100%; height: 7%; display: flex; justify-content: space-between; align-items: center;">
+            <span class="px-1em" style="visibility: hidden !important; height: 100%; display: flex; align-items: center;"><i class="fas fa-car-side" style="height: 100%; display: flex; align-items: center;" id="show-options-ride"></i></span>
+            <span class="px-1em" style="height: 100%; display: flex; align-items: center; justify-content: flex-start;"><i class="fas fa-bars fa-1x" style="height: 100%; display: flex; align-items: center;" id="open-menu"></i></span>
+        </div>
+        <div class="bg-green" id="navbar-mobile-options" style="background-color: #FCFCFC; width: 100%; height: 93%; display: none; justify-content: center; align-items: center; flex-flow: row wrap; flex: 1;">
+            <a class="mb-2em txt-gray" href="/user/map" style="display: inline-block; width: 100; display: flex; justify-content: center;">Pedir un viaje</a>
+            <a class="mb-2em txt-selected" href="/user/history" style="display: inline-block; width: 100%; display: flex; justify-content: center;">Viajes</a>
+            <a class="mb-2em txt-gray" href="/user/profile" style="display: inline-block; width: 100%; display: flex; justify-content: center;">Mi cuenta</a>
+            <p class="close-session" style="display: inline-block; width: 100%;>
+                <hr class="hr mb-1em">
+                <p class="txt-gray" id="close-session" style="bottom: 40px; position: relative;"">Cerrar sesión</p>
+            </p>
+        </div>
         <section class="grid-item-profile">
             <div class="profile-title pt-2em px-1em history-navbar">
                 <span class="fw-600 mr-2em history-navbar-text txt-selected">Comunidad</span>
@@ -46,94 +59,7 @@
                     <h2>Aún no tienes viajes hechos <span id="start-now">¡Empieza haciendo uno!</span></h2>
                 </div> -->
                 <!-- card -->
-                <div id="community-cards">
-                     <div class="profile-description-container">
-                        <div class="p-1em flex-container card-position">
-                            <div class="card p-1em">
-                                <div class="card-item card-name flex-container">
-                                    <div class="icon-box">
-                                        <img class="icon-profile" src="/assets/img/students/${driver.expedient}.png" alt="Imágen del conductor">
-                                    </div>
-                                    <div class="text-box flex-container">
-                                        <small class="user-text-name px-1em">${driver.name}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-date flex-container">
-                                    <div class="icon-box">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </div>
-                                    <div class="text-box">
-                                        <small class="txt-0-dot-5em px-1em">${date}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-origin flex-container">
-                                    <div class="icon-box">
-                                        <i class="fas fa-map-marker-alt svg_card"></i>
-                                    </div>
-                                    <div class="text-box">
-                                        <small class="px-1em">${originName}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-destiny flex-container">
-                                    <div class="icon-box">
-                                        <i class="fas fa-map-marker"></i>
-                                    </div>
-                                    <div class="text-box">
-                                        <small class="px-1em">${destinyName}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-button flex-container mt-1em">
-                                    <div class="text-box">
-                                        <button class="btn bg-green txt-white" id="${_id}">Solicitar viaje</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-description-container">
-                        <div class="p-1em flex-container">
-                            <div class="card p-1em ">
-                                <div class="card-item card-name flex-container">
-                                    <div class="icon-box">
-                                        <img class="icon-profile" src="/assets/img/students/${driver.expedient}.png" alt="Imágen del conductor">
-                                    </div>
-                                    <div class="text-box flex-container">
-                                        <small class="user-text-name px-1em">${driver.name}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-date flex-container">
-                                    <div class="icon-box">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </div>
-                                    <div class="text-box">
-                                        <small class="txt-0-dot-5em px-1em">${date}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-origin flex-container">
-                                    <div class="icon-box">
-                                        <i class="fas fa-map-marker-alt svg_card"></i>
-                                    </div>
-                                    <div class="text-box">
-                                        <small class="px-1em">${originName}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-destiny flex-container">
-                                    <div class="icon-box">
-                                        <i class="fas fa-map-marker"></i>
-                                    </div>
-                                    <div class="text-box">
-                                        <small class="px-1em">${destinyName}</small>
-                                    </div>
-                                </div>
-                                <div class="card-item card-button flex-container mt-1em">
-                                    <div class="text-box">
-                                        <button class="btn bg-green txt-white" id="${_id}">Solicitar viaje</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="community-cards"></div>
                 <div id="container-cards"></div>
                 </div>
             </section>    

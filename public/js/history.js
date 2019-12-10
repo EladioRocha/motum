@@ -25,7 +25,6 @@ async function configureView(node) {
                     document.querySelector(`#container-cards`).innerHTML += html
                 }
             }
-            document.querySelector('#container-cards').classList.add('p-1em')
             listenersCommunity()
             break;
         case 'Activos':
@@ -135,6 +134,7 @@ async function getAllCards(container = document.querySelector('#container-cards'
     let response = await sendHttpRequest(null, url, 'GET'),
         result = (response.data.length === 0) ? showDefaultImg(className, text) : cleanDefaultImg(),
         notDriver = [];
+
     console.log(response)
     for(let card of response.data) {
         if(!!card.driver || className !== 'community-image') {
@@ -144,6 +144,9 @@ async function getAllCards(container = document.querySelector('#container-cards'
         }
     }
     container.innerHTML = result
+    if(response.data.length === 0) {
+        document.querySelector('#start-now').addEventListener('click', startNow)
+    }
     return (notDriver.length > 0) ? {add: true, notDriver} : {add: false} 
 }
 
@@ -197,80 +200,80 @@ function openChat(e) {
 }
 
 function htmlCommunityCards({_id, date, originName, destinyName, driver, riders}) {
-    return `<div class="profile-description-container">
-                    <div class="grid-item-description">
-                        <div class="card p-1em">
-                            ${!!driver 
-                                ? 
-                                `
-                                <div class="card-item card-name flex-container">
-                                    <div class="icon-box">
-                                        <img class="icon-profile" src="/assets/img/students/${driver.expedient}.png" alt="Imágen del conductor">
-                                    </div>
-                                    <div class="text-box flex-container">
-                                        <small class="user-text-name px-1em">${driver.name}</small>
-                                    </div>
-                                </div>
-                                `
-                                :
-                                `
-                                <div class="card-item card-name flex-container">
-                                    <div class="icon-box">
-                                        <img class="icon-profile" src="/assets/img/students/${riders[0].expedient}.png" alt="Imágen del conductor">
-                                    </div>
-                                    <div class="text-box flex-container">
-                                        <small class="user-text-name px-1em fw-600">${riders[0].name}</small>
-                                    </div>
-                                </div>
-                                `
-                            } 
-
-                            <div class="card-item card-date flex-container">
-                                <div class="icon-box">
-                                    <i class="far fa-calendar-alt"></i>
-                                </div>
-                                <div class="text-box">
-                                    <small class="txt-0-dot-5em px-1em">${date}</small>
-                                </div>
-                            </div>
-                            <div class="card-item card-origin flex-container">
-                                <div class="icon-box">
-                                    <i class="fas fa-map-marker-alt svg_card"></i>
-                                </div>
-                                <div class="text-box">
-                                    <small class="px-1em">${originName}</small>
-                                </div>
-                            </div>
-                            <div class="card-item card-destiny flex-container">
-                                <div class="icon-box">
-                                    <i class="fas fa-map-marker"></i>
-                                </div>
-                                <div class="text-box">
-                                    <small class="px-1em">${destinyName}</small>
-                                </div>
-                            </div>
-                            <div class="card-item card-button flex-container mt-1em">
-                                <div class="text-box flex-container" style="width: 100%; justify-content: space-between;">
-                                    ${!!driver 
+    return  `   <div>
+                    <div class="p-1em flex-container card-position">
+                            <div class="card p-1em">
+                                ${!!driver 
                                     ? 
                                     `
-                                    <button class="btn bg-green txt-white" id="${_id}" data-title="accept">Solicitar viaje</button>
+                                    <div class="card-item card-name flex-container">
+                                        <div class="icon-box">
+                                            <img class="icon-profile" src="/assets/img/students/${driver.expedient}.png" alt="Imágen del conductor">
+                                        </div>
+                                        <div class="text-box flex-container">
+                                            <small class="user-text-name px-1em">${driver.name}</small>
+                                        </div>
+                                    </div>
                                     `
                                     :
-                                    `<button class="btn bg-green txt-white" id="${_id}" data-title="accept">Hechar ride</button>`
-                                    }
-                                    <span id="open-chat" data-id-user="${driver._id}" data-id-ride="${_id}"><i class="fas fa-comment-dots fa-2x" ></i></span>
+                                    `
+                                    <div class="card-item card-name flex-container">
+                                        <div class="icon-box">
+                                            <img class="icon-profile" src="/assets/img/students/${riders[0].expedient}.png" alt="Imágen del conductor">
+                                        </div>
+                                        <div class="text-box flex-container">
+                                            <small class="user-text-name px-1em fw-600">${riders[0].name}</small>
+                                        </div>
+                                    </div>
+                                    `
+                                } 
+
+                                <div class="card-item card-date flex-container">
+                                    <div class="icon-box">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="text-box">
+                                        <small class="txt-0-dot-5em px-1em">${date}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-origin flex-container">
+                                    <div class="icon-box">
+                                        <i class="fas fa-map-marker-alt svg_card"></i>
+                                    </div>
+                                    <div class="text-box">
+                                        <small class="px-1em">${originName}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-destiny flex-container">
+                                    <div class="icon-box">
+                                        <i class="fas fa-map-marker"></i>
+                                    </div>
+                                    <div class="text-box">
+                                        <small class="px-1em">${destinyName}</small>
+                                    </div>
+                                </div>
+                                <div class="card-item card-button flex-container mt-1em">
+                                    <div class="text-box flex-container" style="width: 100%; justify-content: space-between;">
+                                        ${!!driver 
+                                        ? 
+                                        `
+                                        <button class="btn bg-green txt-white" id="${_id}" data-title="accept">Solicitar viaje</button>
+                                        `
+                                        :
+                                        `<button class="btn bg-green txt-white" id="${_id}" data-title="accept">Hechar ride</button>`
+                                        }
+                                        <span id="open-chat" style="display: none;" data-id-user="${driver._id}" data-id-ride="${_id}"><i class="fas fa-comment-dots fa-2x" ></i></span>
+                                    </div>
+                                </div>
+                                <div class="chat-popup" id="chat" style="display: none">
+                                    <div class="chat-container">
+                                        <textarea disabled placeholder="No tienes ningùn mensaje" name="msg" required></textarea>
+                                        <input type="text" class="px-1em mb-1em chat-message" placeholder="Mandale un mensaje a ${driver.name}"></input>
+                                        <button type="submit" class="btn bg-green txt-white" id="send-message" data-id-user="${driver._id}" data-id-ride="${_id}">Enviar</button>
+                                        <button type="button" class="btn bg-gray txt-black fw-bold" id="close-chat">Cerrar</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="chat-popup" id="chat">
-                                <div class="chat-container">
-                                    <textarea disabled placeholder="No tienes ningùn mensaje" name="msg" required></textarea>
-                                    <input type="text" class="px-1em mb-1em chat-message" placeholder="Mandale un mensaje a ${driver.name}"></input>
-                                    <button type="submit" class="btn bg-green txt-white" id="send-message" data-id-user="${driver._id}" data-id-ride="${_id}">Enviar</button>
-                                    <button type="button" class="btn bg-gray txt-black fw-bold" id="close-chat">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>`
 }
@@ -300,8 +303,8 @@ function listenersRequest() {
 }
 
 function htmlRequestCard ({_id, rider}) {
-    return  `<div class="profile-description-container">
-                <div class="grid-item-description">
+    return  `<div>
+                <div class="p-1em flex-container card-position">
                     <div class="card p-1em">
                         <!--
                         <div class="card-item card-date flex-container">
@@ -351,8 +354,8 @@ function htmlRequestCard ({_id, rider}) {
 // ================================= PENDING CARDS =========================================== //
 
 function htmlPendingAndActiveCards ({_id, date, originName, destinyName, riders, driver, active}, {self}) {
-    return  `<div class="profile-description-container">
-                <div class="grid-item-description">
+    return  `<div">
+                <div class="p-1em flex-container card-position">
                     <div class="card p-1em">
                         <div class="card-item card-date flex-container">
                             <div class="icon-box flex-container">
@@ -406,10 +409,10 @@ function htmlPendingAndActiveCards ({_id, date, originName, destinyName, riders,
                         <div class="card-item card-button flex-container mt-1em">
                             <div class="text-box flex-container" style="width: 100%; justify-content: space-between">
                                 ${!!driver ? `${(self === driver._id) ? `<button class="btn bg-green txt-white" id="${_id}">${(active) ? 'Finalizar viaje' : 'Empezar viaje'}</button>` : ''}` : ''}            
-                                <span id="open-chat" data-id-user="${driver._id}" data-id-ride="${_id}"><i class="fas fa-comment-dots fa-2x" ></i></span>
+                                <span id="open-chat" style="display: none;" data-id-user="${driver._id}" data-id-ride="${_id}"><i class="fas fa-comment-dots fa-2x" ></i></span>
                             </div>
                         </div>
-                        <div class="chat-popup" id="chat">
+                        <div class="chat-popup" id="chat" style="display: none">
                             <div class="chat-container">
                                 <textarea disabled placeholder="No tienes ningùn mensaje" name="msg" required></textarea>
                                 <input type="text" class="px-1em mb-1em chat-message" placeholder="Mandale un mensaje a ${driver.name}"></input>

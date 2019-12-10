@@ -10,10 +10,10 @@
 </head>
 <body>
     <main class="profile-container grid-container">
-        <nav class="grid-item-nav">
+        <nav class="grid-item-nav navbar-container">
             <div class="nav-user p-1em flex-container">
-                <img src="/public/img/avatar.svg" alt="Image user profile">
-                <span class="fw-600">Eladio Rocha</span>
+                <img src="/public/img/avatar.svg" alt="Image user profile" id="user-img">
+                <span class="fw-600" id="user-name">Eladio Rocha</span>
             </div>
             <div class="nav-options p-1em flex-container">
                 <a class="mb-2em txt-gray" href="/user/map">Pedir un viaje</a>
@@ -25,12 +25,25 @@
                 </p>
             </div>
         </nav>
+        <div  id="navbar-mobile" style="background-color: #FCFCFC; width: 100%; height: 7%; display: flex; justify-content: space-between; align-items: center;">
+            <span class="px-1em" style="visibility: hidden; height: 100%; display: flex; align-items: center;"><i class="fas fa-car-side" id="show-options-ride"></i></span>
+            <span class="px-1em" style="height: 100%; display: flex; align-items: center; justify-content: flex-end;"><i class="fas fa-bars fa-1x" id="open-menu"></i></span>
+        </div>
+        <div class="bg-green" id="navbar-mobile-options" style="background-color: #FCFCFC; width: 100%; height: 93%; display: none; justify-content: center; align-items: center; flex-flow: row wrap; flex: 1;">
+            <a class="mb-2em txt-gray" href="/user/map" style="display: inline-block; width: 100; display: flex; justify-content: center;">Pedir un viaje</a>
+            <a class="mb-2em txt-gray" href="/user/history" style="display: inline-block; width: 100%; display: flex; justify-content: center;">Viajes</a>
+            <a class="mb-2em txt-selected" href="/user/profile" style="display: inline-block; width: 100%; display: flex; justify-content: center;">Mi cuenta</a>
+            <p class="close-session" style="display: inline-block; width: 100%;">
+                <hr class="hr mb-1em">
+                <p class="txt-gray" id="close-session" style="bottom: 40px; position: relative;"">Cerrar sesión</p>
+            </p>
+        </div>
         <section class="grid-item-profile">
             <div class="profile-title p-1em flex-container">
                 <h2>Información de usuario</h2>
             </div>
-            <div class="profile-options p-1em profile-description-container grid-container">
-                <div class="grid-item-description">
+            <div class="profile-options p-1em profile-description-container grid-container" id="profile-info">
+                <div class="grid-item-description" id="form-profile">
                     <h4 class="mb-1em">Información principal</h4>
                     <p>En esta sección se muestra tu Información de usuario, también pueden ser cambiadas sobreescribiendo las cajas de texto.</p>
                     <h4 class="mt-3em" style="display: none;">Activa tu perfil como conductor</h4>
