@@ -33,7 +33,7 @@
     "puppeteer": "^2.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "socketio-jwt": "^4.5.0"
   }
 }
