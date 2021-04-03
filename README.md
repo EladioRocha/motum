@@ -25,5 +25,5 @@ Project created for web development it is created with HTML, CSS and JS Vanilla 
 **Travels - Requests**
 ![Requests page travels motum](https://github.com/EladioRocha/motum/blob/master/examples/result-8.png?raw=true)
 
-** Account page**
-![Account page motum](https://github.com/EladioRocha/motum/blob/master/examples/result-8.png?raw=true)
+**Account page**
+![Account page motum](https://github.com/EladioRocha/motum/blob/master/examples/result-9.png?raw=true)
