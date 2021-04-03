@@ -34,7 +34,7 @@ async function main(expedient, password) {
 
 async function getPicture(html) {
     let str = querySelector('img.foto', html).attr('src')
-    return `https://comunidad2.uaq.mx/portal${str.split('.').slice(-1).pop()}`
+    return `http://comunidad2.uaq.mx/portal${str.split('.').slice(-1).pop()}`
 }
 
 async function getDataFrame(page) {
@@ -75,7 +75,7 @@ async function searchCurrentCareer(frame, selector) {
 async function openBrowser() {
     let browser = await puppeteer.launch({headless: false}),
         page = await browser.newPage();
-        await page.goto('https://comunidad2.uaq.mx/portal/index.jsp');
+        await page.goto('http://comunidad2.uaq.mx/portal');
 
     return {browser, page}
 }
@@ -106,7 +106,9 @@ function isValidUser(url) {
 }
 
 async function closeBrowser(browser) {
-    await browser.close()
+    setTimeout(async () => {
+        await browser.close()
+    }, 3000)
 }
 
 module.exports = {

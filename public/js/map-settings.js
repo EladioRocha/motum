@@ -5,11 +5,11 @@ let map, routeControl, markers = {};
     //Inicializamos el mapa y le pasamos el id del contenedor html
     map = L.map('map').setView([0,0], 13);
     //Mandamos a llamar el mapa y le pasamos una configuración por defecto, incluyendo el token
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWxhZGlvcm9jaGEiLCJhIjoiY2syOTd6NjlhMThtMDNncWhjb3FvazBicyJ9.7zHOqJy7Oc4yOnFrXqDi1Q', {
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWxhZGlvcm9jaGEiLCJhIjoiY2tuMjd6cXRrMHVjYjJvcXBsbjJocGl4eSJ9.4MBLo8Dq0WBboI6ZNS1ksA', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZWxhZGlvcm9jaGEiLCJhIjoiY2syOTd6NjlhMThtMDNncWhjb3FvazBicyJ9.7zHOqJy7Oc4yOnFrXqDi1Q'
+        id: 'mapbox/streets-v11',
+        accessToken: 'pk.eyJ1IjoiZWxhZGlvcm9jaGEiLCJhIjoiY2tuMjd6cXRrMHVjYjJvcXBsbjJocGl4eSJ9.4MBLo8Dq0WBboI6ZNS1ksA'
     }).addTo(map)
     
 

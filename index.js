@@ -11,8 +11,6 @@ require('dotenv').config()
 mongoose.connect(process.env.DB_DEV, {useNewUrlParser: true})
 mongoose.set('useFindAndModify', false)
 
-
-
 io.sockets.on('connection', socketioJwt.authorize({
     secret: process.env.JWT_KEY_DEV,
     timeout: 15000 // 15 seconds to send the authentication message
