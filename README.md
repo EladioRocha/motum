@@ -1,85 +1,56 @@
-# motum
+# Motum — University Carpooling Prototype
 
-Aplicación web con frontend HTML/CSS/JavaScript y backend Express. Incluye pantallas de acceso, perfil, mapa e historial, autenticación y acceso a MongoDB.
+A university carpooling prototype with a **vanilla HTML/CSS/JavaScript frontend, Express backend, MongoDB, and Socket.IO**. The project contains account, map, ride-request, history, and profile workflows.
 
-## Estructura
+## Setup
 
-- [api](api)
-- [examples](examples)
-- [helpers](helpers)
-- [logs](logs)
-- [public](public)
-- [routes](routes)
-- [views](views)
-- [index.js](index.js)
-- [server.js](server.js)
-
-## Preparación y uso
-
-### Raíz del repositorio
-
-Requiere Node.js. Este paquete no fija una versión del runtime; valida compatibilidad con las dependencias antes de actualizarlo.
+Use Node.js, npm, and a development MongoDB instance. Install dependencies from the repository root:
 
 ```sh
 npm ci
-npm run start
 ```
 
-Comandos declarados en [package.json](package.json):
+Configure your local `.env` with `DB_DEV` (MongoDB URI), `PORT_DEV` (application port), and `JWT_KEY_DEV` (a private JWT signing secret). The repository contains historical environment configuration; use your own values. `index.js` loads dotenv and starts both the web application and Socket.IO server.
 
-| Comando | Acción |
+```sh
+npm start
+```
+
+Open the configured local port. The login and map workflows depend on additional integrations: inspect [helpers/uaq-authentication.js](helpers/uaq-authentication.js), map scripts, and client URLs before attempting a full session. Do not assume that historical university authentication or map services remain compatible.
+
+## Project structure
+
+| Path | Purpose |
 | --- | --- |
-| `npm run test` | `echo "Error: no test specified" && exit 1` |
-| `npm run start` | `node index.js` |
+| [index.js](index.js) | MongoDB connection, socket authentication, and HTTP startup. |
+| [server.js](server.js) | Express configuration. |
+| [routes](routes) | Page, account, and ride endpoints. |
+| [api](api) | Controllers, middleware, and MongoDB models. |
+| [public](public) | Browser scripts and styles. |
+| [views](views) | Landing, login, map, history, and profile pages. |
 
-El script `test` es un marcador inicial, no una suite de pruebas.
+## Original screenshots
 
-## Configuración detectada en el código
+These images document the historical interface rather than a newly verified deployment.
 
-Estas son referencias explícitas a variables de entorno, no una garantía de que toda la configuración esté externalizada. Los nombres y archivos permiten localizar dónde se usan; los valores deben corresponder a tu entorno.
+![Motum landing page](examples/result-1.png)
 
-| Variable | Referencia |
-| --- | --- |
-| `DB_DEV` | [index.js](index.js) |
-| `JWT_KEY_DEV` | [api/controllers/user.js](api/controllers/user.js) |
-| `PORT_DEV` | [index.js](index.js) |
+![Motum login](examples/result-2.png)
 
-No guardes credenciales reales en la documentación. Si hay `.env.example`, úsalo como referencia y revisa cómo carga la configuración el punto de entrada.
+![Motum map](examples/result-3.png)
 
-## Validación y estado
+![Motum community rides](examples/result-4.png)
 
-Esta guía se contrastó con el árbol de archivos y los manifiestos del repositorio. No se ha validado una ejecución completa contra servicios externos, bases de datos o hardware. Las versiones y los scripts mostrados describen el código actual; no implican que sus dependencias antiguas sigan siendo compatibles.
+![Motum active rides](examples/result-5.png)
 
-## Documentación previa
+![Motum pending rides](examples/result-6.png)
 
-Se conserva como referencia histórica, incluidas las imágenes y atribuciones originales. Los enlaces a demos y servicios no se han comprobado.
+![Motum finished rides](examples/result-7.png)
 
-# Motum
-Project created for web development it is created with HTML, CSS and JS Vanilla and a little of jquery. The backend are created with **NodeJS**
+![Motum ride requests](examples/result-8.png)
 
-**Landing Page**
-![Landing page motum](https://github.com/EladioRocha/motum/blob/master/examples/result-1.png?raw=true)
+![Motum account](examples/result-9.png)
 
-**Login**
-![Login page motum](https://github.com/EladioRocha/motum/blob/master/examples/result-2.png?raw=true)
+## Validation and limitations
 
-**Map**
-![Main page motum](https://github.com/EladioRocha/motum/blob/master/examples/result-3.png?raw=true)
-
-**Travels - Community**
-![Community page travels motum](https://github.com/EladioRocha/motum/blob/master/examples/result-4.png?raw=true)
-
-**Travels - Actives**
-![Actives page travels motum](https://github.com/EladioRocha/motum/blob/master/examples/result-5.png?raw=true)
-
-**Travels - Pending**
-![Pending page travels motum](https://github.com/EladioRocha/motum/blob/master/examples/result-6.png?raw=true)
-
-**Travels - Finished**
-![Finished page travels motum](https://github.com/EladioRocha/motum/blob/master/examples/result-7.png?raw=true)
-
-**Travels - Requests**
-![Requests page travels motum](https://github.com/EladioRocha/motum/blob/master/examples/result-8.png?raw=true)
-
-**Account page**
-![Account page motum](https://github.com/EladioRocha/motum/blob/master/examples/result-9.png?raw=true)
+`npm test` is a placeholder that exits with an error. `node --check index.js` checks entry-point syntax without connecting to MongoDB. Dependencies include older native and browser-automation packages. Full login, maps, sockets, and ride transitions were not exercised for this documentation update. Some chat logic is commented out, so the presence of a model or UI does not establish a complete live chat implementation.
